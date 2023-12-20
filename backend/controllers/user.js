@@ -40,20 +40,25 @@ const updateUser = (req, res, next) => {
 };
 
 const createUser = (req, res, next) => {
-  const { email, name, password } = req.body;
+  const { email, password, name, lastname, avatar, location, about } = req.body;
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
-      name,
       email,
       password: hash,
+      name,
+      lastname,
+      avatar,
+      location,
+      about
     }))
-    .then((user) => res.status(201).send({ name: user.name, email: user.email }))
+    .then((user) => res.status(201).send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError('Переданы некорректные данные при создании пользователя'));
       } else if (err.code === 11000) {
         next(new DuplicateKeyError());
       } else {
+        console.log(err)
         next(err);
       }
     });

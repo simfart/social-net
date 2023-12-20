@@ -1,22 +1,22 @@
-const Movie = require('../models/movie');
+const Post = require('../models/post');
 
 const { AccessError, NotFoundError, ValidationError } = require('../utils/errors');
 
-const getMovie = (req, res, next) => {
+const getPost = (req, res, next) => {
   const owner = req.user._id;
-  Movie.find({ owner })
-    .then((movie) => res.status(200).send(movie))
+  Post.find({ owner })
+    .then((post) => res.status(200).send(post))
     .catch(next);
 };
 
-const createMovie = (req, res, next) => {
+const createPost = (req, res, next) => {
   const {
     country, director, duration, year, description,
-    image, trailer, nameRU, nameEN, thumbnail, movieId,
+    image, trailer, nameRU, nameEN, thumbnail, postId,
   } = req.body;
   const owner = req.user._id;
 
-  Movie.create({
+  Post.create({
     country,
     director,
     duration,
@@ -27,10 +27,10 @@ const createMovie = (req, res, next) => {
     nameRU,
     nameEN,
     thumbnail,
-    movieId,
+    postId,
     owner,
   })
-    .then((movie) => res.status(201).send(movie))
+    .then((post) => res.status(201).send(post))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError('Переданы некорректные данные при добавлении фильма '));
@@ -40,21 +40,21 @@ const createMovie = (req, res, next) => {
     });
 };
 
-const deleteMovie = (req, res, next) => {
-  Movie.findById(req.params.movieId)
+const deletePost = (req, res, next) => {
+  Post.findById(req.params.postId)
     .orFail(() => new NotFoundError('Фильм не найден'))
-    .then((movie) => {
-      if (movie.owner.toString() !== req.user._id) {
+    .then((post) => {
+      if (post.owner.toString() !== req.user._id) {
         return next(new AccessError());
       }
-      return Movie.findByIdAndDelete(req.params.movieId)
-        .then(() => res.send(movie));
+      return Post.findByIdAndDelete(req.params.postId)
+        .then(() => res.send(post));
     })
     .catch(next);
 };
 
 module.exports = {
-  getMovie,
-  createMovie,
-  deleteMovie,
+  getPost,
+  createPost,
+  deletePost,
 };

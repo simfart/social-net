@@ -5,9 +5,13 @@ const urlrRegex = require('../utils/constants');
 
 const errCreateUser = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).required(),
     email: Joi.string().email().required(),
     password: Joi.string().required(),
+    name: Joi.string().min(2).max(30).required(),
+    lastname: Joi.string().min(2).max(30).required(),
+    avatar: Joi.string().regex(urlrRegex),
+    location: Joi.string(),
+    about: Joi.string(),
   }),
 });
 
@@ -25,7 +29,7 @@ const errUpdateUser = celebrate({
   }),
 });
 
-const errCreateMovie = celebrate({
+const errCreatePost = celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
     director: Joi.string().required(),
@@ -37,15 +41,15 @@ const errCreateMovie = celebrate({
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
     thumbnail: Joi.string().required().regex(urlrRegex),
-    movieId: Joi.number().required(),
+    postId: Joi.number().required(),
   }),
 });
 
-const errMovieId = celebrate({
+const errPostId = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.objectId(),
+    postId: Joi.objectId(),
   }),
 });
 module.exports = {
-  errCreateUser, errLogin, errUpdateUser, errCreateMovie, errMovieId,
+  errCreateUser, errLogin, errUpdateUser, errCreatePost, errPostId,
 };

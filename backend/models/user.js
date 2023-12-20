@@ -20,13 +20,46 @@ const userSchema = new mongoose.Schema(
       required: [true, 'password is required'],
       select: false,
     },
-
     name: {
       type: String,
       required: [true, 'name is required'],
       minlength: 2,
       maxlength: 30,
     },
+    lastname: {
+      type: String,
+      required: [true, 'name is required'],
+      minlength: 2,
+      maxlength: 30,
+    },
+    avatar: {
+      type: String,
+      validate: {
+        validator: (value) => validator.isURL(value),
+        message: 'Невалидный URL',
+      },
+      default: 'https://www.filmofilia.com/wp-content/uploads/2012/09/The-Hobbit_23.jpg',
+    },
+    location: {
+      type: String,
+      default: "Hobbiton, New Zealand"
+    },
+    about: {
+      type: String,
+      default: "Hobbit, Fallohide"
+    },
+    followers: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user'
+    }],
+    followings: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user'
+    }],
+    posts: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'posts'
+    }]
   },
   {
     versionKey: false,

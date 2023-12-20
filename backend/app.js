@@ -11,7 +11,8 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT, MONGO_ADRESS } = require('./utils/config');
 
 const app = express();
-mongoose.connect(MONGO_ADRESS);
+// mongoose.connect('mongodb+srv://artzina7:S1fZRT1rOGuFwpIi@cluster0.hpavfbe.mongodb.net/');
+mongoose.connect(MONGO_ADRESS)
 app.use(requestLogger);
 app.use(limiter);
 app.use(helmet());
@@ -21,10 +22,6 @@ app.use(cors({
     'http://localhost:3000',
     'http://localhost:3001',
     'http://127.0.0.1:27017',
-    'http://api.artmovies.nomoredomains.rocks',
-    'https://api.artmovies.nomoredomains.rocks',
-    'http://artmovies.nomoredomains.rocks',
-    'https://artmovies.nomoredomains.rocks',
   ],
   method: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   credentials: true,
