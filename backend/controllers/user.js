@@ -6,6 +6,12 @@ const { JWT_SECRET } = require('../utils/config');
 
 const { NotFoundError, DuplicateKeyError, ValidationError } = require('../utils/errors');
 
+const getUsers = (req, res, next) => {
+  User.find({})
+    .then((users) => res.send(users))
+    .catch(next);
+};
+
 const getUsersMe = (req, res, next) => {
   User
     .findById(req.user._id)
@@ -18,26 +24,46 @@ const getUsersMe = (req, res, next) => {
     .catch(next);
 };
 
-const updateUser = (req, res, next) => {
-  const { email, name } = req.body;
-  User.findByIdAndUpdate(req.user._id, { email, name }, {
+const updateUsers = (req, res, next, data) => {
+  // const { email, name } = req.body;
+  User.findByIdAndUpdate(req.user._id, data, {
     new: true,
     runValidators: true,
   })
     .orFail(new NotFoundError('Нет пользователя с таким id'))
     .then((user) => {
-      res.send({ data: user });
+      res.send(user);
     })
     .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new ValidationError('Переданы некорректные данные при обновлении профиля'));
-      } else if (err.code === 11000) {
-        next(new DuplicateKeyError());
-      } else {
-        next(err);
-      }
+
+      console.log(err)
+      // if (err.name === 'ValidationError') {
+      //   next(new ValidationError('Переданы некорректные данные при обновлении профиля'));
+      // } else if (err.code === 11000) {
+      //   next(new DuplicateKeyError());
+      // } else {
+      //   next(err);
+      // }
     });
 };
+const updateUser = (req, res, next) => {
+  const data = req.body;
+  User.findByIdAndUpdate(
+    req.params.id,
+    data,
+    // Передадим объект опций:
+    {
+      new: true, // обработчик then получит на вход обновлённую запись
+      runValidators: true, // данные будут валидированы перед изменением
+      // upsert: true // если пользователь не найден, он будет создан
+    }
+  )
+    .then(user => res.send(user))
+    .catch(err => res.status(500).send({ message: "Данные не прошли валидацию. Либо произошло что-то совсем немыслимое" }));
+}
+
+
+
 
 const createUser = (req, res, next) => {
   const { email, password, name, lastname, avatar, location, about } = req.body;
@@ -96,4 +122,5 @@ module.exports = {
   updateUser,
   login,
   logout,
+  getUsers
 };

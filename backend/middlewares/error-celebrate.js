@@ -24,8 +24,13 @@ const errLogin = celebrate({
 
 const errUpdateUser = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required().min(2).max(30),
-    email: Joi.string().required().email(),
+    email: Joi.string().email(),
+
+    name: Joi.string().min(2).max(30),
+    lastname: Joi.string().min(2).max(30),
+    avatar: Joi.string().regex(urlrRegex),
+    location: Joi.string(),
+    about: Joi.string(),
   }),
 });
 
