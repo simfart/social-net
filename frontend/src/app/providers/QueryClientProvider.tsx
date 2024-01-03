@@ -1,3 +1,4 @@
+import { FC, PropsWithChildren } from "react";
 import {
   QueryClient,
   QueryClientProvider as LQueryClientProvider,
@@ -13,11 +14,9 @@ const client = new QueryClient({
   queryCache: new QueryCache({}),
 });
 
-interface IProps {
-  children: React.ReactNode;
-}
+interface IQueryClientProviderProps extends PropsWithChildren {}
 
-export const QueryClientProvider = ({ children }: IProps) => {
+export const QueryClientProvider: FC<IQueryClientProviderProps> = ({ children }) => {
   return (
     <LQueryClientProvider client={client}>{children}</LQueryClientProvider>
   );

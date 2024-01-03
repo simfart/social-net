@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { AuthForm } from "../../entities/auth-form";
-import { AuthFormInput } from "../../shared/types";
 import { useForm } from "../../shared/hooks";
+import { Input } from "shared/ui";
 
 export const SignUp = () => {
   const {
@@ -36,7 +36,7 @@ export const SignUp = () => {
       textButton=""
       children={
         <>
-          <AuthFormInput
+          <Input
             name="email"
             type="email"
             placeholder="e-mail"
@@ -46,7 +46,7 @@ export const SignUp = () => {
             minLength={2}
             maxLength={15}
           />
-          <AuthFormInput
+          <Input
             name="password"
             type="password"
             placeholder="password"
@@ -56,7 +56,7 @@ export const SignUp = () => {
             minLength={2}
             maxLength={15}
           />
-          <AuthFormInput
+          <Input
             name="name"
             type="text"
             placeholder="Name"
@@ -66,7 +66,7 @@ export const SignUp = () => {
             minLength={2}
             maxLength={10}
           />
-          <AuthFormInput
+          <Input
             name="avatar"
             type="url"
             placeholder="avatar URL"
@@ -76,7 +76,7 @@ export const SignUp = () => {
             minLength={2}
             maxLength={10}
           />
-          <AuthFormInput
+          <Input
             name="location"
             type="url"
             placeholder="avatar URL"
@@ -86,7 +86,7 @@ export const SignUp = () => {
             minLength={2}
             maxLength={10}
           />
-          <AuthFormInput
+          <Input
             name="location"
             type="text"
             placeholder="location"
@@ -96,7 +96,7 @@ export const SignUp = () => {
             minLength={2}
             maxLength={10}
           />
-          <AuthFormInput
+          <Input
             name="about"
             type="text"
             placeholder="about"

@@ -1,13 +1,14 @@
+import { FC, PropsWithChildren } from "react";
+
 import "./AuthForm.scss";
 
-interface IProps {
-  children: React.ReactNode;
+interface IAuthFormProps extends PropsWithChildren {
   title: string;
   subtitle: string;
   textButton: string;
 }
 
-export const AuthForm = ({ children, title, subtitle, textButton }: IProps) => {
+export const AuthForm: FC<IAuthFormProps> = ({ children, title, subtitle, textButton }) => {
   return (
     <div className="auth-container">
       <form className="auth-form" noValidate>

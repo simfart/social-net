@@ -1,6 +1,7 @@
+import { FC } from "react";
 import { SignUp } from "../../features/auth";
 
-export const RouterProvider = () => {
+export const RouterProvider: FC = () => {
   return (
     <div>
       <SignUp />

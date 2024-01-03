@@ -1,1 +1,0 @@
-export { AuthFormInput } from "./AuthFormInput";
