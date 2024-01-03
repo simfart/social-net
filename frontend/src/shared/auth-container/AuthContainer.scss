@@ -1,0 +1,34 @@
+.auth-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 114px auto;
+  max-width: 690px;
+}
+
+.ellipse-big {
+  width: 302px;
+  height: 302px;
+  border-radius: 302px;
+  background: linear-gradient(180deg, #530061 0%, #181a1c 100%);
+  position: absolute;
+  z-index: 1;
+  top: -50px;
+  left: 20px;
+  margin: 0;
+}
+
+.ellipse-small {
+  width: 220px;
+  height: 220px;
+  border-radius: 220px;
+  transform: rotate(-28.5deg);
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #300061 0%, #0a1030 100%);
+  position: absolute;
+  z-index: 1;
+  bottom: -60px;
+  right: 110px;
+  overflow: hidden;
+  margin: 0;
+}

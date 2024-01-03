@@ -6,10 +6,12 @@ interface IInputProps
   extends React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
-  > {}
+  > {
+  inputSize?: "s" | "l" | "xl";
+}
 
 const CnInput = cn("input");
 
-export const Input: FC<IInputProps> = ({ ...props }) => {
-  return <input className="input" {...props} />;
+export const Input: FC<IInputProps> = ({ size = "s", ...props }) => {
+  return <input className={CnInput({ size })} {...props} />;
 };

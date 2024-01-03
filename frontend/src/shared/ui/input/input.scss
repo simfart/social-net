@@ -1,0 +1,12 @@
+.input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0);
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #fff;
+  color: #fff;
+  margin-bottom: 10px;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
