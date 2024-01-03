@@ -4,23 +4,18 @@ interface IProps {
   children: React.ReactNode;
   title: string;
   subtitle: string;
+  textButton: string;
 }
 
-export const AuthForm = ({ children, title, subtitle }: IProps) => {
+export const AuthForm = ({ children, title, subtitle, textButton }: IProps) => {
   return (
     <div className="auth-container">
       <form className="auth-form" noValidate>
         <h2>{title}</h2>
         <span>{subtitle}</span>
         <fieldset>{children}</fieldset>
-        <button
-          // className={`form-auth__button ${
-          //   isValid ? "" : "popup__button_invalid"
-          // }`}
-          type="submit"
-          aria-label="Сохранить"
-        >
-          Зарегистрироваться
+        <button type="submit" aria-label="Сохранить">
+          {textButton}
         </button>
         <span>Already have account? SIGN IN</span>
       </form>

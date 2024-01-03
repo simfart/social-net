@@ -33,6 +33,7 @@ export const SignUp = () => {
     <AuthForm
       title="Signup"
       subtitle="Just some details to get you in.!"
+      textButton=""
       children={
         <>
           <AuthFormInput
