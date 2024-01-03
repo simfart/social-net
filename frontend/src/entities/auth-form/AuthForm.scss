@@ -1,0 +1,72 @@
+.auth-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 114px auto;
+  max-width: 690px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  max-width: 358px;
+  align-items: center;
+  border-radius: 30px;
+  box-shadow: 6px 6px 6px 5px rgb(79 79 79 / 25%);
+  z-index: 2;
+  padding: 97px 40px 47px 40px;
+  border-radius: 20px;
+  border: 1px solid var(--Glass1-Stroke-Carey, #afafaf);
+  background: var(
+    --Glass1-Fill-Carey,
+    linear-gradient(
+      321deg,
+      rgba(191, 191, 191, 0.06) 5.98%,
+      rgba(0, 0, 0, 0) 66.28%
+    ),
+    rgba(0, 0, 0, 0.14)
+  );
+  box-shadow: -8px 4px 5px 0px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(26.5px);
+  color: #fff;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 600;
+    align-self: flex-start;
+    margin: 0;
+  }
+  span {
+    font-size: 16px;
+    font-weight: 500;
+    align-self: flex-start;
+    margin: 0;
+  }
+}
+
+.form-ellipse {
+  width: 302px;
+  height: 302px;
+  border-radius: 302px;
+  background: linear-gradient(180deg, #530061 0%, #181a1c 100%);
+  position: absolute;
+  z-index: 1;
+  top: -50px;
+  left: -20px;
+}
+
+.form-ellipse-small {
+  width: 220px;
+  height: 220px;
+  border-radius: 220px;
+  transform: rotate(-28.5deg);
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #300061 0%, #0a1030 100%);
+  position: absolute;
+  z-index: 1;
+  bottom: -60px;
+  right: 75px;
+  overflow: hidden;
+}

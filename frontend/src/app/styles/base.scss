@@ -1,8 +1,26 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
   text-align: center;
+  background-color: #181A1C;
   --color-dark: #242424;
   --color-primary: #108ee9;
+}
+
+.app{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin: 0 auto;
+  font-family: "HK Grotesk", Arial, sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  font-weight: 400;
+  box-sizing: border-box;
+  min-height: 100vh;
+  
 }

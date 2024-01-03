@@ -1,3 +1,9 @@
+import { SignUp } from "../../features/auth";
+
 export const RouterProvider = () => {
-  return <div></div>;
+  return (
+    <div>
+      <SignUp />
+    </div>
+  );
 };
