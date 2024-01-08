@@ -1,29 +1,25 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AuthForm } from "../../../entities/auth-form";
 import { AuthContainer } from "shared/auth-container";
 import { useForm } from "../../../shared/hooks";
 import { Input } from "shared/ui";
 import { Loader } from "shared/ui/loader/Loader";
 import { useLogin } from "shared/hooks";
-import { FC, memo, useMemo } from "react";
+import { FC, memo, useCallback, useMemo, useState } from "react";
 
 const initialFormData = {
-  email: '',
-  password: '',
-  name: ''
-}
+  email: "",
+  password: "",
+};
 
 const placeholderFromInputName = {
   email: "E-Mail",
   password: "Password",
-  name: 'Name'
-}
+};
 
 const typeFromInputName = {
-  email: 'email',
-  password: 'password',
-  name: 'text'
-}
+  email: "email",
+  password: "password",
+};
 
 export const Login: FC = memo(() => {
   const {
@@ -38,13 +34,15 @@ export const Login: FC = memo(() => {
 
   const { mutate, isLoading } = useLogin();
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     mutate(values);
+
     setValues(initialFormData);
     setErrors({});
     setIsValid(true);
-  };
+  }, []);
 
   const formContent = useMemo(() => {
     const valuesKeys = Object.keys(values) as Array<keyof typeof values>; // email | password
@@ -64,9 +62,9 @@ export const Login: FC = memo(() => {
           maxLength={15}
           errText={errors[formKey]}
         />
-      )
-    })
-  }, [values, errors, handleInputChange])
+      );
+    });
+  }, [values, errors, handleInputChange]);
 
   return isLoading ? (
     <Loader />

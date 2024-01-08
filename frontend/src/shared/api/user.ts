@@ -1,13 +1,19 @@
 import { api } from "./api";
 
-export const login = async (payload: {
-  email: string,
-  password: string
-}) => {
-  return await api.post<{ token: string }>(`/signin`, payload).then((res) => res.data);
+export const login = async (payload: { email: string; password: string }) => {
+  return await api
+    .post<{ token: string }>(`/signin`, payload)
+    .then((res) => res.data);
 };
 
-export const register = async <T>(payload: T) => {
+export const register = async (payload: {
+  email: string;
+  password: string;
+  name: string;
+  avatar?: string;
+  location?: string;
+  about?: string;
+}) => {
   return await api.post(`/signup`, payload).then((res) => res.data);
 };
 
