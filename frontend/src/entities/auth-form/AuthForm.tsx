@@ -1,10 +1,4 @@
-import {
-  FC,
-  FormEvent,
-  FormEventHandler,
-  PropsWithChildren,
-  SyntheticEvent,
-} from "react";
+import { FC, FormEventHandler, PropsWithChildren } from "react";
 import "./AuthForm.scss";
 import { Link } from "react-router-dom";
 

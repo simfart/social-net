@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
 import { AuthForm } from "../../../entities/auth-form";
 import { AuthContainer } from "shared/auth-container";
 import { useForm } from "../../../shared/hooks";
 import { Input } from "shared/ui";
-import { login } from "shared/api";
-
 import { Loader } from "shared/ui/loader/Loader";
 import { useLogin } from "shared/hooks";
 
