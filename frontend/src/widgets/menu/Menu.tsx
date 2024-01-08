@@ -6,6 +6,14 @@ import plusLogo from "../../shared/images/Feed.svg";
 import { Logout } from "shared/ui/logout";
 import { FC } from "react";
 
+const navItems = [
+  {
+    name: '',
+    image: '',
+    link: ''
+  }
+]
+
 export const Menu: FC = () => {
   return (
     <nav>

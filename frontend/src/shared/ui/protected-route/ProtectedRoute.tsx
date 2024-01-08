@@ -6,7 +6,8 @@ export type ProtectedRouteProps = {
   element: JSX.Element;
 };
 
-export const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
-  const isloggedIn = useAuthStore();
-  return isloggedIn ? element : <Navigate replace={true} to="/signin/" />;
+export const ProtectedRoute: FC<ProtectedRouteProps> = ({ element }) => {
+  const { isLoggedIn } = useAuthStore();
+
+  return isLoggedIn ? element : <Navigate replace={true} to="/signin/" />;
 };

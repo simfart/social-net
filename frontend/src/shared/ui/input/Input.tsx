@@ -14,7 +14,7 @@ export const Input: FC<IInputProps> = ({ isValid, errText, ...props }) => {
   return (
     <>
       <input className={`input ${isValid ? "input_invalid" : ""}`} {...props} />
-      <span className="input__massage">{errText}</span>
+      {errText && <span className="input__massage">{errText}</span>}
     </>
   );
 };

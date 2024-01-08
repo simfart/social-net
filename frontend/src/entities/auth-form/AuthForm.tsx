@@ -1,6 +1,7 @@
 import { FC, FormEventHandler, PropsWithChildren } from "react";
-import "./AuthForm.scss";
 import { Link } from "react-router-dom";
+
+import "./AuthForm.scss";
 
 interface IAuthFormProps extends PropsWithChildren {
   title: string;

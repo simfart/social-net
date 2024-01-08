@@ -10,7 +10,9 @@ export const useLogin = () => {
   const { mutate, isLoading } = useMutation(login, {
     onSuccess: (data) => {
       window.localStorage.setItem("jwt", data.token);
+      
       queryClient.invalidateQueries(["user"]);
+
       navigate("/", { replace: true });
     },
     onError: (err) => {
