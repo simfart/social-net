@@ -1,8 +1,7 @@
 const bcrypt = require('bcryptjs');
-const JWT = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-
-const { JWT_SECRET } = require('../utils/config');
+const { NODE_ENV, JWT_SECRET = 'JWT_SECRET' } = process.env;
 
 const { NotFoundError, DuplicateKeyError, ValidationError } = require('../utils/errors');
 
@@ -63,21 +62,30 @@ const updateUser = (req, res, next) => {
 }
 
 
-
-
 const createUser = (req, res, next) => {
-  const { email, password, name, lastname, avatar, location, about } = req.body;
+  const { email, password, name, avatar, location, about } = req.body;
+  const userPassword = password
+  const userEmail = email
   bcrypt.hash(password, 10)
     .then((hash) => User.create({
       email,
       password: hash,
       name,
-      lastname,
       avatar,
       location,
       about
     }))
-    .then((user) => res.status(201).send(user))
+    .then((user) => res.status(201))
+    .then((user) => {
+      const email = userEmail
+      const password = userPassword
+      return User.findUserByCredentials(email, password)
+    })
+    .then((user) => {
+      res.send({
+        token: jwt.sign({ _id: user._id }, 'super-strong-secret', { expiresIn: '7d' }),
+      });
+    })
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError('Переданы некорректные данные при создании пользователя'));
@@ -90,30 +98,21 @@ const createUser = (req, res, next) => {
     });
 };
 
+
 const login = (req, res, next) => {
   const { email, password } = req.body;
-  User.findUserByCredentials(email, password)
+  return User.findUserByCredentials(email, password)
     .then((user) => {
-      const payload = { _id: user.id, email: user.email };
-      const token = JWT.sign(payload, JWT_SECRET, { expiresIn: '7d' });
-      res
-        .cookie('jwt', token, {
-          maxAge: 3600000 * 7,
-          sameSite: 'none',
-          SameSite: 'None',
-          secure: true,
-        });
-      res.send({ token });
+      res.send({
+        token: jwt.sign({ _id: user._id }, 'super-strong-secret', { expiresIn: '7d' }),
+      });
     })
     .catch(next);
 };
 
+
 const logout = (req, res) => {
-  res.clearCookie('jwt', {
-    sameSite: 'none',
-    SameSite: 'None',
-    secure: true,
-  }).send({ message: 'Выход' });
+  res.send({ message: 'Выход' });
 };
 
 module.exports = {

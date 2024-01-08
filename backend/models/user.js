@@ -26,12 +26,7 @@ const userSchema = new mongoose.Schema(
       minlength: 2,
       maxlength: 30,
     },
-    lastname: {
-      type: String,
-      required: [true, 'name is required'],
-      minlength: 2,
-      maxlength: 30,
-    },
+
     avatar: {
       type: String,
       validate: {

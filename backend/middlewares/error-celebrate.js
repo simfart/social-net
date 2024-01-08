@@ -8,7 +8,6 @@ const errCreateUser = celebrate({
     email: Joi.string().email().required(),
     password: Joi.string().required(),
     name: Joi.string().min(2).max(30).required(),
-    lastname: Joi.string().min(2).max(30).required(),
     avatar: Joi.string().regex(urlrRegex),
     location: Joi.string(),
     about: Joi.string(),
@@ -27,7 +26,6 @@ const errUpdateUser = celebrate({
     email: Joi.string().email(),
 
     name: Joi.string().min(2).max(30),
-    lastname: Joi.string().min(2).max(30),
     avatar: Joi.string().regex(urlrRegex),
     location: Joi.string(),
     about: Joi.string(),

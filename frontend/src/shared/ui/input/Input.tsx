@@ -1,15 +1,20 @@
 import { FC } from "react";
-import { cn } from "@bem-react/classname";
 import "./input.scss";
 
 interface IInputProps
   extends React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
-  > {}
+  > {
+  isValid: boolean;
+  errText?: string;
+}
 
-const CnInput = cn("input");
-
-export const Input: FC<IInputProps> = ({ ...props }) => {
-  return <input className="input" {...props} />;
+export const Input: FC<IInputProps> = ({ isValid, errText, ...props }) => {
+  return (
+    <>
+      <input className={`input ${isValid ? "input_invalid" : ""}`} {...props} />
+      <span className="input__massage">{errText}</span>
+    </>
+  );
 };

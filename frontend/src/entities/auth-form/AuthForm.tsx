@@ -1,4 +1,10 @@
-import { FC, PropsWithChildren } from "react";
+import {
+  FC,
+  FormEvent,
+  FormEventHandler,
+  PropsWithChildren,
+  SyntheticEvent,
+} from "react";
 import "./AuthForm.scss";
 import { Link } from "react-router-dom";
 
@@ -9,6 +15,8 @@ interface IAuthFormProps extends PropsWithChildren {
   textSpan: string;
   linkSpan: string;
   textLinkSpan: string;
+  handleSubmit: FormEventHandler<HTMLFormElement>;
+  isValid: boolean;
 }
 
 export const AuthForm: FC<IAuthFormProps> = ({
@@ -19,13 +27,19 @@ export const AuthForm: FC<IAuthFormProps> = ({
   textSpan,
   linkSpan,
   textLinkSpan,
+  handleSubmit,
+  isValid,
 }) => {
   return (
-    <form className="auth-form" noValidate>
+    <form className="auth-form" onSubmit={handleSubmit} noValidate>
       <h2>{title}</h2>
       <span className="auth-form__subtitle">{subtitle}</span>
       <fieldset>{children}</fieldset>
-      <button type="submit" aria-label="Сохранить">
+      <button
+        className={isValid ? "" : "button_invalid"}
+        type="submit"
+        aria-label={textButton}
+      >
         {textButton}
       </button>
       <span>

@@ -10,3 +10,22 @@
     margin-bottom: 0;
   }
 }
+
+.input:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.input_invalid {
+  border: 1px solid #cd407b;
+  margin: 0;
+}
+
+.input__massage {
+  color: #cd407b;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0 0 10px 0;
+}
