@@ -11,6 +11,7 @@ export const RouterProvider: FC = () => {
     <Routes>
       <Route path="/signup" element={<Register />} />
       <Route path="/signin" element={<Login />} />
+      <Route path="/profile" element={<Profile />} /> //x
       <Route path="/" element={<ProtectedRoute element={<Profile />} />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>

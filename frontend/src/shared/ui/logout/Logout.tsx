@@ -1,14 +1,16 @@
 import { FC } from "react";
 import { useMutation } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logout } from "shared/api";
+import exitLogo from "./../../images/Exit.svg";
+import LogoutIcon from "./../../images/Exit.png";
+
+import "./Logout.scss";
 
 export const Logout: FC = () => {
-  const navigate = useNavigate();
   const { mutate } = useMutation(logout, {
     onSuccess: () => {
       window.localStorage.removeItem("jwt");
-      navigate("/signin", { replace: true });
     },
   });
 
@@ -16,5 +18,10 @@ export const Logout: FC = () => {
     mutate();
   };
 
-  return <button onClick={handleClick}>Exit</button>;
+  return (
+    <Link className="logout" onClick={handleClick} to={"/signin"}>
+      <img src={LogoutIcon} alt="Log out" />
+      Log out
+    </Link>
+  );
 };

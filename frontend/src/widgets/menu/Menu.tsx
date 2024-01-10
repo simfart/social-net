@@ -2,43 +2,58 @@ import feedLogo from "../../shared/images/Feed.svg";
 import alertLogo from "../../shared/images/Alert.svg";
 import searchLogo from "../../shared/images/search.svg";
 import profileLogo from "../../shared/images/Profile.svg";
-import plusLogo from "../../shared/images/Feed.svg";
+import { AddContent } from "shared/ui/addContent";
 import { Logout } from "shared/ui/logout";
-import { FC } from "react";
+import { FC, useMemo } from "react";
+import { Link } from "react-router-dom";
 
-const navItems = [
+import "./Menu.scss";
+
+const menuData = [
   {
-    name: '',
-    image: '',
-    link: ''
-  }
-]
+    name: "Notifications",
+    icon: alertLogo,
+    path: "/",
+  },
+  {
+    name: "Home",
+    icon: feedLogo,
+    path: "/",
+  },
+  {
+    name: "Search",
+    icon: searchLogo,
+    path: "/",
+  },
+  {
+    name: "Profile",
+    icon: profileLogo,
+    path: "/",
+  },
+];
 
 export const Menu: FC = () => {
+  const MenuItems = useMemo(() => {
+    return menuData.map((item, index) => {
+      return (
+        <li key={index}>
+          <Link className="menu__link" to={item.path}>
+            <img src={item.icon} alt={item.name} />
+            <span>{item.name}</span>
+          </Link>
+        </li>
+      );
+    });
+  }, []);
   return (
-    <nav>
-      <ul>
-        <li>
-          <img src={feedLogo} alt="Home" />
-          <span>Home</span>
-        </li>
-        <li>
-          <img src={alertLogo} alt="Notifications" />
-          <span>Notifications</span>
-        </li>
-        <li>
-          <img src={searchLogo} alt="Search" />
-          <span>Search</span>
-        </li>
-        <li>
-          <img src={profileLogo} alt="Profile" />
-          <span>Profile</span>
-        </li>
-        <li>
-          <img src={plusLogo} alt="add content" />
-        </li>
+    <nav className="menu">
+      <ul className="menu-container">
+        {MenuItems}
         <li>
           <Logout />
+        </li>
+        <li>
+          <AddContent />
         </li>
       </ul>
     </nav>
