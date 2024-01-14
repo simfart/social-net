@@ -2,14 +2,14 @@ import feedLogo from "../../shared/images/Feed.svg";
 import alertLogo from "../../shared/images/Alert.svg";
 import searchLogo from "../../shared/images/search.svg";
 import profileLogo from "../../shared/images/Profile.svg";
-import { AddContent } from "shared/ui/addContent";
+import addLogo from "../../shared/images/Plus.svg";
 import { Logout } from "shared/ui/logout";
 import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
 
-import "./Menu.scss";
+import "./Navbar.scss";
 
-const menuData = [
+const navData = [
   {
     name: "Notifications",
     icon: alertLogo,
@@ -32,12 +32,12 @@ const menuData = [
   },
 ];
 
-export const Menu: FC = () => {
-  const MenuItems = useMemo(() => {
-    return menuData.map((item, index) => {
+export const Navbar: FC = () => {
+  const NavItems = useMemo(() => {
+    return navData.map((item, index) => {
       return (
         <li key={index}>
-          <Link className="menu__link" to={item.path}>
+          <Link className="navbar__link" to={item.path}>
             <img src={item.icon} alt={item.name} />
             <span>{item.name}</span>
           </Link>
@@ -46,14 +46,16 @@ export const Menu: FC = () => {
     });
   }, []);
   return (
-    <nav className="menu">
-      <ul className="menu-container">
-        {MenuItems}
+    <nav className="navbar">
+      <ul className="navbar-container">
+        {NavItems}
         <li>
           <Logout />
         </li>
         <li>
-          <AddContent />
+          <Link className="navbar__button" to={"/create-post"}>
+            <img src={addLogo} alt="Add content" />
+          </Link>
         </li>
       </ul>
     </nav>

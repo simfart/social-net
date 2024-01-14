@@ -1,11 +1,14 @@
-.menu {
+.navbar {
+  max-width: 184px;
 }
 
-.menu-container {
+.navbar-container {
   display: flex;
   flex-direction: column;
   text-decoration: none;
   margin: 0;
+  display: flex;
+  padding: 0px 12px;
 
   li {
     list-style: none;
@@ -32,8 +35,23 @@
   }
 }
 
-.menu__link {
+.navbar__link {
   text-decoration: none;
   display: flex;
   align-items: center;
+}
+
+.navbar__button {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background: linear-gradient(90deg, #f62e8e 0%, #ac1af0 102.84%);
+  box-shadow: 0px 8px 28px 0px rgba(0, 0, 0, 0.08);
+  border: none;
+  cursor: pointer;
+  img {
+    margin: 0;
+  }
 }

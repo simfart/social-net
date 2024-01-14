@@ -1,1 +1,1 @@
-export { AddContent } from "./AddContent";
+export { CreatePost } from "./CreatePost";
