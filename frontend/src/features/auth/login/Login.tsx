@@ -4,7 +4,7 @@ import { useForm } from "../../../shared/hooks";
 import { Input } from "shared/ui";
 import { Loader } from "shared/ui/loader/Loader";
 import { useLogin } from "shared/hooks";
-import { FC, memo, useCallback, useMemo, useState } from "react";
+import { FC, memo, useCallback, useMemo } from "react";
 
 const initialFormData = {
   email: "",
@@ -42,10 +42,10 @@ export const Login: FC = memo(() => {
     setValues(initialFormData);
     setErrors({});
     setIsValid(true);
-  }, []);
+  }, [mutate, values, setErrors, setIsValid, setValues]);
 
   const formContent = useMemo(() => {
-    const valuesKeys = Object.keys(values) as Array<keyof typeof values>; // email | password
+    const valuesKeys = Object.keys(values) as Array<keyof typeof values>;
 
     return valuesKeys.map((formKey) => {
       return (
@@ -53,7 +53,7 @@ export const Login: FC = memo(() => {
           key={formKey}
           name={formKey}
           type={typeFromInputName[formKey]}
-          isValid={!!errors[formKey]}
+          isInvalid={!!errors[formKey]}
           placeholder={placeholderFromInputName[formKey]}
           required={true}
           value={values[formKey]}
@@ -66,9 +66,9 @@ export const Login: FC = memo(() => {
     });
   }, [values, errors, handleInputChange]);
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  if (isLoading) return <Loader />
+
+  return (
     <AuthContainer
       children={
         <AuthForm
@@ -84,5 +84,5 @@ export const Login: FC = memo(() => {
         />
       }
     />
-  );
+  )
 });

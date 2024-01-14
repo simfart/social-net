@@ -1,33 +1,18 @@
+import { FC, PropsWithChildren } from "react";
 import videoIcon from "../../../images/Video.png";
 import imgIcon from "../../../images/Image.png";
 
 import "./ContentMenu.scss";
-import { FC } from "react";
 
-export interface IButtonProps {
-  children?: React.ReactNode;
-  props?: any;
-  onClickImg?:
-    | ((event: React.MouseEvent<HTMLButtonElement>) => void)
-    | undefined;
-  onClickVideo?:
-    | ((event: React.MouseEvent<HTMLButtonElement>) => void)
-    | undefined;
+export interface IButtonProps extends PropsWithChildren {
+  onClickImg?: ((event: React.MouseEvent<HTMLButtonElement>) => void)
+  onClickVideo?: ((event: React.MouseEvent<HTMLButtonElement>) => void)
 }
 
 export const ContentMenu: FC<IButtonProps> = ({
-  children,
-  onClickImg = () => {},
-  onClickVideo = () => {},
-  ...props
+  onClickImg,
+  onClickVideo,
 }) => {
-  const handleOnClickImg = (e: React.MouseEvent<HTMLButtonElement>) => {
-    onClickImg(e);
-  };
-  const handleOnClickVideo = (e: React.MouseEvent<HTMLButtonElement>) => {
-    onClickVideo(e);
-  };
-
   return (
     <div className="menu">
       <input type="checkbox" id="add-checkbox" className="add-checkbox" />
@@ -35,10 +20,10 @@ export const ContentMenu: FC<IButtonProps> = ({
       <ul className="menu-list">
         <li></li>
         <li>
-          <button onClick={handleOnClickImg}>
+          <button onClick={onClickImg}>
             <img src={imgIcon} alt="Add video" />
           </button>
-          <button onClick={handleOnClickVideo}>
+          <button onClick={onClickVideo}>
             <img src={videoIcon} alt="Add video" />
           </button>
         </li>

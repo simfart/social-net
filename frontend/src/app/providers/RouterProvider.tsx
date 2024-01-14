@@ -10,11 +10,14 @@ import { Profile } from "pages/profile";
 export const RouterProvider: FC = () => {
   return (
     <Routes>
+      <Route path="/" element={<ProtectedRoute element={<Profile />} />} />
+      
       <Route path="/signup" element={<Register />} />
       <Route path="/signin" element={<Login />} />
-      <Route path="/profile" element={<Profile />} /> //protected
-      <Route path="/create-post" element={<CreatePost />} /> //protected
-      <Route path="/" element={<ProtectedRoute element={<Profile />} />} />
+
+      <Route path="/profile" element={<Profile />} /> {/* protected */}
+      <Route path="/create-post" element={<CreatePost />} /> {/* sprotected */}
+      
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

@@ -10,8 +10,8 @@ interface IAuthFormProps extends PropsWithChildren {
   textSpan: string;
   linkSpan: string;
   textLinkSpan: string;
-  handleSubmit: FormEventHandler<HTMLFormElement>;
   isValid: boolean;
+  handleSubmit: FormEventHandler<HTMLFormElement>;
 }
 
 export const AuthForm: FC<IAuthFormProps> = ({

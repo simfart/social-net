@@ -1,25 +1,26 @@
 import { FC, useCallback, useState } from "react";
 import { Navbar } from "widgets/menu";
 import { ContentMenu } from "./content-menu";
-
-import "./CreatePost.scss";
 import profilePhoto from "../../images/profile photo-to-del.jpg";
 
-interface IInputProps
-  extends React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  > {}
+import "./CreatePost.scss";
+import { cn } from "@bem-react/classname";
+
+const CnCreatePost = cn('createPost')
+
+// createPost-form
+// createPost-formMenu
+
 
 export const CreatePost: FC = () => {
-  const [components, setComponents] = useState<IInputProps[]>([]);
+  const [components, setComponents] = useState<{name: string}[]>([]);
 
   const addImg = useCallback(() => {
-    components.length < 1 && setComponents([...components, { name: "photo" }]);
+    setComponents([{ name: "photo" }]);
   }, []);
 
   const addVideo = useCallback(() => {
-    components.length < 1 && setComponents([...components, { name: "video" }]);
+    setComponents([{ name: "video" }]);
   }, []);
 
   const handleDeleteInput = () => {
@@ -27,31 +28,31 @@ export const CreatePost: FC = () => {
   };
 
   return (
-    <section className="create-post">
+    <section className={CnCreatePost()}>
       <Navbar />
-      <form className="create-form">
-        <div className="create-form__menu">
-          <button className="create-form__btn__discard">Discard</button>
+      <div className={CnCreatePost('form')}>
+        <div className={CnCreatePost('formMenu')}>
+          {/* <button className="create-form__btn__discard">Discard</button> -> <Button view="discard">Discard</Button>*/} 
           <h2>Create</h2>
-          <button className="create-form__btn__publish">Publish</button>
+          {/* <button className="create-form__btn__publish">Publish</button> -> <Button view="publish">Publish</Button> */}
         </div>
-        <div className="create-form__input">
+        <div className={CnCreatePost('formInput')}>
           <img src={profilePhoto} alt="" />
-          <input type="text" placeholder="What’s on your mind?" autoFocus />
+          {/* <input type="text" placeholder="What’s on your mind?" autoFocus /> -> <Input view="Какой то новый вид"/> */}
         </div>
 
         {components.map(
-          (item, i) =>
-            components.length > 0 && (
-              <div key={i} className="create-form__input">
+          (item) =>
+            (
+              <div key={item.name} className={CnCreatePost("formInput")}>
                 <div></div>
-                <input type="text" placeholder={item.name} autoFocus />
-                <button onClick={() => handleDeleteInput()}>Delete</button>
+                {/* <input type="text" placeholder={item.name} autoFocus /> */}
+                <button onClick={handleDeleteInput}>Delete</button>
               </div>
             )
         )}
         <ContentMenu onClickImg={addImg} onClickVideo={addVideo} />
-      </form>
+      </div>
     </section>
   );
 };

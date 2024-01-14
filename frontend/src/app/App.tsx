@@ -1,4 +1,3 @@
-// import { Routing } from "pages";
 import { FC } from "react";
 import { RouterProvider } from "./providers";
 import { QueryClientProvider } from "./providers/QueryClientProvider";

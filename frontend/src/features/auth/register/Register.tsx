@@ -36,23 +36,21 @@ const typeFromInputName = {
 export const Register: FC = memo(() => {
   const {
     values,
-    handleInputChange,
-    setValues,
     isValid,
-    setIsValid,
     errors,
-    setErrors,
+    clearForm,
+    handleInputChange,
   } = useForm(initialFormData);
 
   const { mutate, isLoading } = useRegister();
 
   const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     mutate(values);
-    setValues(initialFormData);
-    setErrors({});
-    setIsValid(true);
-  }, []);
+
+    clearForm()
+  }, [mutate, values, clearForm]);
 
   const formContent = useMemo(() => {
     const valueKeys = Object.keys(values) as Array<keyof typeof values>;
@@ -63,7 +61,7 @@ export const Register: FC = memo(() => {
           key={formKey}
           name={formKey}
           type={typeFromInputName[formKey]}
-          isValid={!!errors[formKey]}
+          isInvalid={!!errors[formKey]}
           placeholder={placeholderFromInputName[formKey]}
           required={true}
           value={values[formKey]}
@@ -96,76 +94,3 @@ export const Register: FC = memo(() => {
     />
   );
 });
-
-//   <>
-//     <Input
-//       name="email"
-//       type="email"
-//       placeholder="e-mail *"
-//       required={true}
-//       value={values.email || ""}
-//       onChange={handleInputChange}
-//       minLength={2}
-//       maxLength={15}
-//       isValid={errors.email ? true : false}
-//       errText={errors.email}
-//     />
-//     <Input
-//       name="password"
-//       type="password"
-//       isValid={errors.password ? true : false}
-//       placeholder="password *"
-//       required={true}
-//       value={values.password || ""}
-//       onChange={handleInputChange}
-//       minLength={4}
-//       maxLength={15}
-//       errText={errors.password}
-//     />
-//     <Input
-//       name="name"
-//       type="text"
-//       placeholder="name *"
-//       required={true}
-//       value={values.name || ""}
-//       onChange={handleInputChange}
-//       minLength={2}
-//       maxLength={30}
-//       isValid={errors.name ? true : false}
-//       errText={errors.name}
-//     />
-//     <Input
-//       name="avatar"
-//       type="url"
-//       placeholder="avatar URL"
-//       required={false}
-//       value={values.avatar || ""}
-//       onChange={handleInputChange}
-//       isValid={errors.avatar ? true : false}
-//       errText={errors.avatar}
-//     />
-//     <Input
-//       name="location"
-//       type="text"
-//       placeholder="location"
-//       required={false}
-//       value={values.location || ""}
-//       onChange={handleInputChange}
-//       minLength={2}
-//       maxLength={30}
-//       isValid={errors.location ? true : false}
-//       errText={errors.location}
-//     />
-//     <Input
-//       name="about"
-//       type="text"
-//       placeholder="about"
-//       required={false}
-//       value={values.about || ""}
-//       onChange={handleInputChange}
-//       minLength={2}
-//       maxLength={30}
-//       isValid={errors.about ? true : false}
-//       errText={errors.about}
-//     />
-// </>

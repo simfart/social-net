@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, useCallback } from "react";
 
-export const useForm = <T>(inputValues: T) => {
-  const [values, setValues] = useState(inputValues);
+export const useForm = <T>(initialValues: T) => {
+  const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isValid, setIsValid] = useState(true);
 
@@ -23,13 +23,20 @@ export const useForm = <T>(inputValues: T) => {
     []
   );
 
+  const clearForm = useCallback(() => {
+    setValues(initialValues);
+    setErrors({});
+    setIsValid(true);
+  }, [initialValues])
+
   return {
     values,
+    isValid,
+    errors,
     handleInputChange,
     setValues,
-    isValid,
     setIsValid,
-    errors,
     setErrors,
+    clearForm
   };
 };

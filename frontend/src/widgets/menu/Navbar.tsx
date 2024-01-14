@@ -8,6 +8,7 @@ import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 import "./Navbar.scss";
+import { cn } from "@bem-react/classname";
 
 const navData = [
   {
@@ -32,12 +33,14 @@ const navData = [
   },
 ];
 
+const CnNavbar = cn('navbar')
+
 export const Navbar: FC = () => {
   const NavItems = useMemo(() => {
     return navData.map((item, index) => {
       return (
         <li key={index}>
-          <Link className="navbar__link" to={item.path}>
+          <Link className={CnNavbar('link')} to={item.path}>
             <img src={item.icon} alt={item.name} />
             <span>{item.name}</span>
           </Link>
@@ -45,15 +48,16 @@ export const Navbar: FC = () => {
       );
     });
   }, []);
+
   return (
-    <nav className="navbar">
-      <ul className="navbar-container">
+    <nav className={CnNavbar()}>
+      <ul className={CnNavbar("container")}>
         {NavItems}
         <li>
           <Logout />
         </li>
         <li>
-          <Link className="navbar__button" to={"/create-post"}>
+          <Link className={CnNavbar('button')} to={"/create-post"}>
             <img src={addLogo} alt="Add content" />
           </Link>
         </li>
