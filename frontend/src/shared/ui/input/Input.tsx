@@ -3,7 +3,7 @@ import { cn } from "@bem-react/classname";
 
 import "./input.scss";
 
-const CnInput = cn('input')
+const CnInput = cn("input");
 
 // input-message
 
@@ -17,7 +17,12 @@ interface IInputProps
   errText?: string;
 }
 
-export const Input: FC<IInputProps> = ({ isInvalid, view = 'default', errText, ...props }) => {
+export const Input: FC<IInputProps> = ({
+  isInvalid,
+  view = "default",
+  errText,
+  ...props
+}) => {
   return (
     <>
       <input className={CnInput({ invalid: isInvalid, view })} {...props} />

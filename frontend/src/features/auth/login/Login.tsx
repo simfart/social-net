@@ -22,27 +22,21 @@ const typeFromInputName = {
 };
 
 export const Login: FC = memo(() => {
-  const {
-    values,
-    handleInputChange,
-    setValues,
-    isValid,
-    setIsValid,
-    errors,
-    setErrors,
-  } = useForm(initialFormData);
+  const { values, isValid, errors, handleInputChange, clearForm } =
+    useForm(initialFormData);
 
   const { mutate, isLoading } = useLogin();
 
-  const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    mutate(values);
+      mutate(values);
 
-    setValues(initialFormData);
-    setErrors({});
-    setIsValid(true);
-  }, [mutate, values, setErrors, setIsValid, setValues]);
+      clearForm();
+    },
+    [mutate, values, clearForm]
+  );
 
   const formContent = useMemo(() => {
     const valuesKeys = Object.keys(values) as Array<keyof typeof values>;
@@ -66,7 +60,7 @@ export const Login: FC = memo(() => {
     });
   }, [values, errors, handleInputChange]);
 
-  if (isLoading) return <Loader />
+  if (isLoading) return <Loader />;
 
   return (
     <AuthContainer
@@ -84,5 +78,5 @@ export const Login: FC = memo(() => {
         />
       }
     />
-  )
+  );
 });

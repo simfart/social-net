@@ -34,23 +34,21 @@ const typeFromInputName = {
 };
 
 export const Register: FC = memo(() => {
-  const {
-    values,
-    isValid,
-    errors,
-    clearForm,
-    handleInputChange,
-  } = useForm(initialFormData);
+  const { values, isValid, errors, clearForm, handleInputChange } =
+    useForm(initialFormData);
 
   const { mutate, isLoading } = useRegister();
 
-  const onSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    mutate(values);
+  const onSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    clearForm()
-  }, [mutate, values, clearForm]);
+      mutate(values);
+
+      clearForm();
+    },
+    [mutate, values, clearForm]
+  );
 
   const formContent = useMemo(() => {
     const valueKeys = Object.keys(values) as Array<keyof typeof values>;
@@ -74,9 +72,9 @@ export const Register: FC = memo(() => {
     });
   }, [values, errors, handleInputChange]);
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  if (isLoading) return <Loader />;
+
+  return (
     <AuthContainer
       children={
         <AuthForm
