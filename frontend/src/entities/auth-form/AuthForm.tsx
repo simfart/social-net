@@ -1,7 +1,8 @@
 import { FC, FormEventHandler, PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
-
+import { Button } from "shared/ui/button";
 import "./AuthForm.scss";
+
 import { cn } from "@bem-react/classname";
 
 const CnForm = cn("authForm");
@@ -33,13 +34,7 @@ export const AuthForm: FC<IAuthFormProps> = ({
       <h2>{title}</h2>
       <span className={CnForm("subtitle")}>{subtitle}</span>
       <fieldset>{children}</fieldset>
-      <button
-        className={isValid ? "" : "button_invalid"}
-        type="submit"
-        aria-label={textButton}
-      >
-        {textButton}
-      </button>
+      <Button isInvalid={isValid} textButton={textButton} view="auth" />
       <span>
         {textSpan}
         <Link to={linkSpan} className={CnForm("link")}>

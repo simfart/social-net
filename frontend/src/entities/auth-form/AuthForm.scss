@@ -31,22 +31,6 @@
     margin: 0;
   }
 
-  button {
-    width: 100%;
-    padding: 14px 10px;
-    border-radius: 12px;
-    background: linear-gradient(
-      91deg,
-      #628eff 9.91%,
-      #8740cd 53.29%,
-      #580475 91.56%
-    );
-    color: #fff;
-    cursor: pointer;
-    border: none;
-    margin: 25px 0;
-  }
-
   fieldset {
     border: 0;
     padding: 0;
@@ -64,13 +48,4 @@
     color: #fff;
     text-decoration: none;
   }
-}
-
-.button_invalid {
-  background-color: #ffffff;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  color: #000000;
-  opacity: 0.2;
-  pointer-events: none;
 }

@@ -1,31 +1,43 @@
-import { AuthForm } from "../../../entities/auth-form";
-import { AuthContainer } from "shared/auth-container";
-import { useForm } from "../../../shared/hooks";
+import { AuthForm } from "../../../../entities/auth-form";
+import { useForm } from "shared/hooks";
 import { Input } from "shared/ui";
+import { AuthContainer } from "shared/auth-container";
+import { useRegister } from "shared/hooks";
 import { Loader } from "shared/ui/loader/Loader";
-import { useLogin } from "shared/hooks";
 import { FC, memo, useCallback, useMemo } from "react";
 
 const initialFormData = {
   email: "",
   password: "",
+  name: "",
+  avatar: "",
+  location: "",
+  about: "",
 };
 
 const placeholderFromInputName = {
-  email: "E-Mail",
-  password: "Password",
+  email: "E-Mail *",
+  password: "Password *",
+  name: "Name *",
+  avatar: "Avatar URL",
+  location: "Location",
+  about: "About",
 };
 
 const typeFromInputName = {
   email: "email",
   password: "password",
+  name: "text",
+  avatar: "url",
+  location: "text",
+  about: "text",
 };
 
-export const Login: FC = memo(() => {
-  const { values, isValid, errors, handleInputChange, clearForm } =
+export const Register: FC = memo(() => {
+  const { values, isValid, errors, clearForm, handleInputChange } =
     useForm(initialFormData);
 
-  const { mutate, isLoading } = useLogin();
+  const { mutate, isLoading } = useRegister();
 
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,9 +51,9 @@ export const Login: FC = memo(() => {
   );
 
   const formContent = useMemo(() => {
-    const valuesKeys = Object.keys(values) as Array<keyof typeof values>;
+    const valueKeys = Object.keys(values) as Array<keyof typeof values>;
 
-    return valuesKeys.map((formKey) => {
+    return valueKeys.map((formKey) => {
       return (
         <Input
           key={formKey}
@@ -66,13 +78,13 @@ export const Login: FC = memo(() => {
     <AuthContainer
       children={
         <AuthForm
+          title="Signup"
+          subtitle="Just some details to get you in.!"
+          textButton="Signup"
+          linkSpan="/signin"
+          textLinkSpan="Login"
+          textSpan="Already Registered? "
           handleSubmit={onSubmit}
-          title="Login"
-          subtitle="Glad you’re back.!"
-          linkSpan="/signup"
-          textButton="Login"
-          textLinkSpan="Signup"
-          textSpan="Don’t have an account ? "
           isValid={isValid}
           children={formContent}
         />

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Login, Register } from "features/auth";
+import { Login, Register } from "pages/auth";
 import { Routes, Route } from "react-router-dom";
 import { PageNotFound } from "shared/ui";
 import { ProtectedRoute } from "shared/ui";
@@ -11,13 +11,10 @@ export const RouterProvider: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<ProtectedRoute element={<Profile />} />} />
-      
       <Route path="/signup" element={<Register />} />
       <Route path="/signin" element={<Login />} />
-
       <Route path="/profile" element={<Profile />} /> {/* protected */}
       <Route path="/create-post" element={<CreatePost />} /> {/* sprotected */}
-      
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

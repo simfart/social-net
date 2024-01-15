@@ -1,6 +1,56 @@
-// .create-post {
-//   display: flex;
-// }
+.createPost {
+  display: flex;
+  h2 {
+    color: #ecebed;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 115%;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-formMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  &-formInput {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 100px;
+      object-fit: cover;
+      margin-right: 12px;
+      border-radius: 100px;
+    }
+
+    @media screen and (max-width: 600px) {
+      img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    button,
+    h2 {
+      font-size: 14px;
+    }
+  }
+}
 
 // .create-form {
 //   display: flex;

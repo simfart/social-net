@@ -5,15 +5,13 @@ import "./input.scss";
 
 const CnInput = cn("input");
 
-// input-message
-
 interface IInputProps
   extends React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  isInvalid: boolean;
-  view?: "default" | "crazy";
+  isInvalid?: boolean;
+  view?: "default" | "auth" | "post";
   errText?: string;
 }
 

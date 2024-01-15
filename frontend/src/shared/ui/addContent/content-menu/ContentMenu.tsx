@@ -1,26 +1,42 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useState } from "react";
+
+import { Button } from "shared/ui/button";
+
 import videoIcon from "../../../images/Video.png";
 import imgIcon from "../../../images/Image.png";
 
 import "./ContentMenu.scss";
 
-export interface IButtonProps extends PropsWithChildren {
-  onClickImg?: ((event: React.MouseEvent<HTMLButtonElement>) => void)
-  onClickVideo?: ((event: React.MouseEvent<HTMLButtonElement>) => void)
+import { cn } from "@bem-react/classname";
+
+const CnContent = cn("content");
+
+export interface IContentMenu extends PropsWithChildren {
+  onClickImg?: () => void;
+  onClickVideo?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  isChecked: boolean | undefined;
 }
 
-export const ContentMenu: FC<IButtonProps> = ({
-  onClickImg,
+export const ContentMenu: FC<IContentMenu> = ({
   onClickVideo,
+  onClickImg,
+  isChecked,
 }) => {
   return (
-    <div className="menu">
-      <input type="checkbox" id="add-checkbox" className="add-checkbox" />
-      <label htmlFor="add-checkbox" className="add-image"></label>
-      <ul className="menu-list">
+    <div className={CnContent("menu")}>
+      <input
+        type="checkbox"
+        id={CnContent("checkbox")}
+        className={CnContent("checkbox")}
+      />
+      <label
+        htmlFor={CnContent("checkbox")}
+        className={CnContent("image")}
+      ></label>
+      <ul className={CnContent("list")}>
         <li></li>
         <li>
-          <button onClick={onClickImg}>
+          <button name="img" onClick={onClickImg}>
             <img src={imgIcon} alt="Add video" />
           </button>
           <button onClick={onClickVideo}>
