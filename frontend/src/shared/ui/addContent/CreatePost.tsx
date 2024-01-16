@@ -14,26 +14,15 @@ const CnCreatePost = cn("createPost");
 // createPost-formMenu
 
 export const CreatePost: FC = () => {
-  // const [components, setComponents] = useState<{ name: string }[]>([]);
-  // const [contentInput, setContentInput] = useState<{ name: string }>();
-
-  // const addImg = useCallback(() => {
-  //   setComponents([{ name: "photo" }]);
-  // }, []);
-
-  // const addVideo = useCallback(() => {
-  //   setComponents([{ name: "video" }]);
-  // }, []);
-
-  // const handleDeleteInput = () => {
-  //   setComponents([]);
-  // };
   const [contentInput, setContentInput] = useState<string>();
-  const [checked, isChecked] = useState<boolean>();
-  const addImgInput = () => {
+
+  const addImg = useCallback(() => {
     setContentInput("img");
-    console.log(contentInput);
-  };
+  }, [contentInput]);
+
+  const addVideo = useCallback(() => {
+    setContentInput("img");
+  }, [contentInput]);
 
   return (
     <section className={CnCreatePost()}>
@@ -66,7 +55,7 @@ export const CreatePost: FC = () => {
             <button onClick={handleDeleteInput}>Delete</button>
           </div>
         ))} */}
-        <ContentMenu isChecked={checked} onClickImg={addImgInput} />
+        <ContentMenu onClickImg={addImg} onClickVideo={addVideo} />
       </div>
     </section>
   );
