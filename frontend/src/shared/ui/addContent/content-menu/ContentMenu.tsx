@@ -9,6 +9,7 @@ import {
 
 import videoIcon from "../../../images/Video.png";
 import imgIcon from "../../../images/Image.png";
+import { useClickOutside } from "shared/hooks";
 
 import "./ContentMenu.scss";
 
@@ -22,30 +23,23 @@ export interface IContentMenu extends PropsWithChildren {
 }
 
 export const ContentMenu: FC<IContentMenu> = ({ onClickVideo, onClickImg }) => {
+  const menu = useRef<HTMLDivElement | null>(null);
+  const checkbox = useRef<HTMLInputElement | null>(null);
   const [isChecked, setIsChecked] = useState(false);
+
+  useClickOutside({ divElement: menu, handler: () => setIsChecked(false) });
 
   const handleOnChange = useCallback(() => {
     setIsChecked(!isChecked);
   }, [isChecked]);
-
-  const checkbox = useRef<HTMLInputElement | null>(null);
 
   const handleClick = (item: string) => {
     item === "img" && onClickImg?.();
     item === "video" && onClickVideo?.();
     setIsChecked(false);
   };
-  const menu = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: TouchEvent | MouseEvent) => {
-      if (menu.current && !menu.current.contains(event.target as Node)) {
-        setIsChecked(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+  // setIsChecked(useClickOutside({ divElement: menu }));
 
   return (
     <div ref={menu} className={CnContent("menu")}>
