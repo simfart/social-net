@@ -1,14 +1,8 @@
-import {
-  FC,
-  PropsWithChildren,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { FC, PropsWithChildren, useCallback, useRef, useState } from "react";
 
-import videoIcon from "../../../images/Video.png";
-import imgIcon from "../../../images/Image.png";
+import videoIcon from "../../../shared/images/Video.png";
+import imgIcon from "../../../shared/images/Image.png";
+
 import { useClickOutside } from "shared/hooks";
 
 import "./ContentMenu.scss";
@@ -38,8 +32,6 @@ export const ContentMenu: FC<IContentMenu> = ({ onClickVideo, onClickImg }) => {
     item === "video" && onClickVideo?.();
     setIsChecked(false);
   };
-
-  // setIsChecked(useClickOutside({ divElement: menu }));
 
   return (
     <div ref={menu} className={CnContent("menu")}>

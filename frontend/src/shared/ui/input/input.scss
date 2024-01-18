@@ -1,4 +1,6 @@
 .input {
+  width: 100%;
+
   &_invalid {
     border: 1px solid #cd407b;
   }
@@ -37,6 +39,7 @@
       font-size: 20px;
       line-height: 150%;
       width: 100%;
+      min-height: 48px;
     }
     @media screen and (max-width: 600px) {
       &_post {

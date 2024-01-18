@@ -1,4 +1,4 @@
-import { AuthForm } from "../../../../entities/auth-form";
+import { AuthForm } from "../../../entities/auth-form";
 import { useForm } from "shared/hooks";
 import { Input } from "shared/ui";
 import { AuthContainer } from "shared/auth-container";

@@ -3,7 +3,7 @@ import { Login, Register } from "pages/auth";
 import { Routes, Route } from "react-router-dom";
 import { PageNotFound } from "shared/ui";
 import { ProtectedRoute } from "shared/ui";
-import { CreatePost } from "shared/ui/addContent";
+import { CreatePost } from "pages/createPost";
 
 import { Profile } from "pages/profile";
 

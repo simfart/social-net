@@ -3,7 +3,7 @@ import { useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import { logout } from "shared/api";
 import exitLogo from "./../../images/Exit.svg";
-import LogoutIcon from "./../../images/Exit.png";
+import LogoutIcon from "./../../images/logout.svg";
 
 import "./Logout.scss";
 

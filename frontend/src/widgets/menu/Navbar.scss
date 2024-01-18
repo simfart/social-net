@@ -1,57 +1,68 @@
-// .navbar {
-//   max-width: 184px;
-// }
+.navbar {
+  background: linear-gradient(90deg, #ffffff00 0%, #302c3226 102.84%);
+  padding: 30px 50px 50px 30px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
 
-// .navbar-container {
-//   display: flex;
-//   flex-direction: column;
-//   text-decoration: none;
-//   margin: 0;
-//   display: flex;
-//   padding: 0px 12px;
+  &-logo {
+    width: 170px;
+    margin-bottom: 40px;
+  }
+  &-container {
+    display: flex;
+    flex-direction: column;
 
-//   li {
-//     list-style: none;
-//     margin-bottom: 44px;
-//   }
+    text-decoration: none;
+    margin: 0 40px 0 0;
+    display: flex;
+    padding: 0;
 
-//   img {
-//     height: 26px;
-//     width: 26px;
-//     margin-right: 20px;
-//   }
-//   @media screen and (max-width: 600px) {
-//     img {
-//       height: 24px;
-//       width: 24px;
-//     }
-//   }
+    li {
+      list-style: none;
+      margin-bottom: 44px;
+      img {
+        height: 26px;
+        width: 26px;
+        margin-right: 20px;
+      }
+    }
 
-//   span {
-//     color: #f7f9f9;
-//     font-size: 20px;
-//     font-weight: 400;
-//     line-height: 24px; /* 120% */
-//   }
-// }
+    @media screen and (max-width: 600px) {
+      img {
+        height: 24px;
+        width: 24px;
+      }
+    }
 
-// .navbar__link {
-//   text-decoration: none;
-//   display: flex;
-//   align-items: center;
-// }
+    span {
+      color: #f7f9f9;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 24px; /* 120% */
+    }
+  }
 
-// .navbar__button {
-//   display: flex;
-//   padding: 8px;
-//   align-items: center;
-//   justify-content: center;
-//   border-radius: 24px;
-//   background: linear-gradient(90deg, #f62e8e 0%, #ac1af0 102.84%);
-//   box-shadow: 0px 8px 28px 0px rgba(0, 0, 0, 0.08);
-//   border: none;
-//   cursor: pointer;
-//   img {
-//     margin: 0;
-//   }
-// }
+  &-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  &-button {
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    background: linear-gradient(90deg, #f62e8e 0%, #ac1af0 102.84%);
+    box-shadow: 0px 8px 28px 0px rgba(0, 0, 0, 0.08);
+    border: none;
+    cursor: pointer;
+    img {
+      margin: 0;
+    }
+  }
+}

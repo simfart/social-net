@@ -57,7 +57,7 @@
       display: block;
     }
     &::before {
-      content: url("../../../images/Add.svg");
+      content: url("../../../shared/images/Add.svg");
       transition: transform 0.3s 0.15s;
     }
     &::after {

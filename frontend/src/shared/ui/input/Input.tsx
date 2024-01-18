@@ -22,9 +22,9 @@ export const Input: FC<IInputProps> = ({
   ...props
 }) => {
   return (
-    <>
+    <div className={CnInput()}>
       <input className={CnInput({ invalid: isInvalid, view })} {...props} />
       {errText && <span className={CnInput("message")}>{errText}</span>}
-    </>
+    </div>
   );
 };
