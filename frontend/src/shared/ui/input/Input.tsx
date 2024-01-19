@@ -24,7 +24,7 @@ export const Input: FC<IInputProps> = ({
 }) => {
   return (
     <div className={CnInput("item")}>
-      <input className={CnInput({ invalid: isInvalid, view })} {...props} />
+      <input className={CnInput(view, { invalid: isInvalid })} {...props} />
       {errText && <span className={CnInput("message")}>{errText}</span>}
     </div>
   );

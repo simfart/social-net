@@ -1,7 +1,5 @@
 import { FC, PropsWithChildren, useCallback, useRef, useState } from "react";
-
-import videoIcon from "../../../shared/images/Video.png";
-import imgIcon from "../../../shared/images/Image.png";
+import { videoIcon, imgIcon } from "shared/images";
 
 import { useClickOutside } from "shared/hooks";
 
@@ -30,6 +28,7 @@ export const ContentMenu: FC<IContentMenu> = ({ onClickVideo, onClickImg }) => {
   const handleClick = (item: string) => {
     item === "img" && onClickImg?.();
     item === "video" && onClickVideo?.();
+    console.log(item);
     setIsChecked(false);
   };
 
@@ -50,12 +49,16 @@ export const ContentMenu: FC<IContentMenu> = ({ onClickVideo, onClickImg }) => {
 
       <ul className={CnContent("list")}>
         <li>
-          <button name="img" onClick={() => handleClick("img")}>
+          <button name="img" type="button" onClick={() => handleClick("img")}>
             <img src={imgIcon} alt="Add video" />
           </button>
         </li>
         <li>
-          <button onClick={() => handleClick("video")}>
+          <button
+            name="video"
+            type="button"
+            onClick={() => handleClick("video")}
+          >
             <img src={videoIcon} alt="Add video" />
           </button>
         </li>

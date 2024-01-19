@@ -1,3 +1,5 @@
+export { useNewPost } from "./useNewPost";
+
 export { useClickOutside } from "./useClickOutside";
 
 export { useRegister } from "./useRegister";

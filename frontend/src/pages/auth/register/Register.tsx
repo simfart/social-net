@@ -43,7 +43,13 @@ export const Register: FC = memo(() => {
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      mutate(values);
+      const valuesArr = Object.entries(values);
+      const filteredArr = valuesArr.filter(function ([key, value]) {
+        return value !== "";
+      });
+      const newValues = Object.fromEntries(filteredArr);
+
+      // mutate(newValues);
 
       clearForm();
     },
@@ -61,12 +67,13 @@ export const Register: FC = memo(() => {
           type={typeFromInputName[formKey]}
           isInvalid={!!errors[formKey]}
           placeholder={placeholderFromInputName[formKey]}
-          required={true}
+          // required={true}
           value={values[formKey]}
           onChange={handleInputChange}
           minLength={2}
-          maxLength={15}
+          maxLength={100}
           errText={errors[formKey]}
+          view="auth"
         />
       );
     });
@@ -85,7 +92,7 @@ export const Register: FC = memo(() => {
           textLinkSpan="Login"
           textSpan="Already Registered? "
           handleSubmit={onSubmit}
-          isValid={isValid}
+          isInvalid={!isValid}
           children={formContent}
         />
       }

@@ -14,7 +14,7 @@ interface IAuthFormProps extends PropsWithChildren {
   textSpan: string;
   linkSpan: string;
   textLinkSpan: string;
-  isValid: boolean;
+  isInvalid: boolean;
   handleSubmit: FormEventHandler<HTMLFormElement>;
 }
 
@@ -27,14 +27,14 @@ export const AuthForm: FC<IAuthFormProps> = ({
   linkSpan,
   textLinkSpan,
   handleSubmit,
-  isValid,
+  isInvalid,
 }) => {
   return (
     <form className={CnForm()} onSubmit={handleSubmit} noValidate>
       <h2>{title}</h2>
       <span className={CnForm("subtitle")}>{subtitle}</span>
       <fieldset>{children}</fieldset>
-      <Button isInvalid={isValid} textButton={textButton} view="auth" />
+      <Button isInvalid={isInvalid} textButton={textButton} view="auth" />
       <span>
         {textSpan}
         <Link to={linkSpan} className={CnForm("link")}>

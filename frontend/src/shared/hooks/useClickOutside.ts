@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren, useEffect } from "react";
 
 interface IOutsideProps extends PropsWithChildren {
   divElement: React.MutableRefObject<HTMLDivElement | null>;

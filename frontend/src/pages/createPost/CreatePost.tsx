@@ -1,39 +1,36 @@
-import { FC, useCallback, useState } from "react";
+import { FC, FormEvent, useCallback, useState } from "react";
 import { Navbar } from "widgets/menu";
 import { ContentMenu } from "./contentMenu";
 import { useForm } from "shared/hooks";
-import profilePhoto from "../../shared/images/profile photo-to-del.jpg";
-import deleteIcon from "../../shared/images/delete.png";
+import { deleteIcon } from "shared/images";
 import { Button } from "../../shared/ui/button";
 import { Input } from "../../shared/ui";
 
+import { useNewPost } from "shared/hooks";
+
 import "./CreatePost.scss";
 import { cn } from "@bem-react/classname";
+import { useUser } from "shared/hooks/useUser";
 
 const CnCreatePost = cn("createPost");
 
 const initialFormData = {
-  postText: "",
+  description: "",
   image: "",
   video: "",
 };
 
 const placeholderFromInputName = {
-  postText: "What’s on your mind?",
+  description: "What’s on your mind?",
   image: "Paste the URL of the image",
   video: "Paste the link to the video from YouTube",
-};
-
-const typeFromInputName = {
-  postText: "text",
-  image: "url",
-  video: "url",
 };
 
 export const CreatePost: FC = () => {
   const { values, isValid, errors, clearForm, handleInputChange } =
     useForm(initialFormData);
 
+  const { mutate, isLoading } = useNewPost();
   const [contentInput, setContentInput] = useState<string>();
 
   const addImg = useCallback(() => {
@@ -46,43 +43,60 @@ export const CreatePost: FC = () => {
 
   const deletInput = useCallback(() => {
     setContentInput("");
-  }, []);
-  console.log(contentInput, "contentInput");
-  console.log(values);
+    values.image = "";
+    values.video = "";
+  }, [contentInput]);
+
+  const { data: currentUser } = useUser();
+  const handleSubmit = useCallback(
+    (e: FormEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      mutate(values);
+      clearForm();
+    },
+    [mutate, values, clearForm]
+  );
 
   return (
     <section className={CnCreatePost()}>
       <Navbar />
-      <div className={CnCreatePost("form")}>
+      <form className={CnCreatePost("form")}>
         <div className={CnCreatePost("formMenu")}>
           <Button view="discard" textButton="Discard" />
           <h2>Create</h2>
-          <Button view="publish" textButton="Publish" />
+          <Button
+            onClick={handleSubmit}
+            isInvalid={!isValid}
+            view="publish"
+            textButton="Publish"
+          />
         </div>
         <div className={CnCreatePost("formInput")}>
-          <img src={profilePhoto} alt="" />
+          <img src={currentUser?.data.avatar} alt="" />
           <Input
-            name="postText"
+            name="description"
             type="text"
-            isInvalid={!!errors[initialFormData.postText]}
-            value={values.postText}
+            isInvalid={!!errors.description}
+            value={values.description}
             onChange={handleInputChange}
-            errText={errors.postText}
-            placeholder={placeholderFromInputName.postText}
+            errText={errors.description}
+            placeholder={placeholderFromInputName.description}
             minLength={4}
             view="post"
             autoFocus
           />
         </div>
 
-        {contentInput && (
+        {(contentInput == "image" || contentInput == "video") && (
           <div className={CnCreatePost("formInput_content")}>
             <Input
-              name=""
+              name={contentInput}
               type="url"
               view="post"
-              // placeholder={placeholderFromInputName[contentInput]}
-              value={values.image}
+              isInvalid={!!errors[contentInput]}
+              errText={errors[contentInput]}
+              placeholder={placeholderFromInputName[contentInput]}
+              value={values[contentInput]}
               onChange={handleInputChange}
               autoFocus
             />
@@ -93,7 +107,7 @@ export const CreatePost: FC = () => {
         )}
 
         <ContentMenu onClickImg={addImg} onClickVideo={addVideo} />
-      </div>
+      </form>
     </section>
   );
 };

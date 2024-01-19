@@ -3,10 +3,6 @@
     width: 100%;
   }
 
-  &_invalid {
-    border: 1px solid #cd407b;
-  }
-
   &-message {
     color: #cd407b;
     font-size: 12px;
@@ -14,40 +10,35 @@
     padding: 0 0 10px 0;
   }
 
-  &_view {
-    &_auth {
-      width: 100%;
-      background: rgba(0, 0, 0, 0);
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid #fff;
-      color: #fff;
-      // margin-top: 10px;
-
-      // &:first-of-type {
-      //   margin-top: 0;
-      // }
-      // &:active,
-      // :hover,
-      // :focus {
-      //   outline: 0;
-      //   outline-offset: 0;
-      // }
+  &-auth {
+    min-width: 276px;
+    background: rgba(0, 0, 0, 0);
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #fff;
+    color: #fff;
+    margin-top: 10px;
+    &_invalid {
+      border: 1px solid #cd407b;
     }
+  }
 
+  &-post {
+    background: rgba(0, 0, 0, 0);
+    border: 0;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 150%;
+    width: 100%;
+    min-height: 48px;
+
+    &_invalid {
+      border-bottom: 1px solid #cd407b;
+    }
+  }
+  @media screen and (max-width: 600px) {
     &_post {
-      background: rgba(0, 0, 0, 0);
-      border: 0;
-      color: #ffffff;
-      font-size: 20px;
-      line-height: 150%;
-      width: 100%;
-      min-height: 48px;
-    }
-    @media screen and (max-width: 600px) {
-      &_post {
-        font-size: 16px;
-      }
+      font-size: 16px;
     }
   }
 }
