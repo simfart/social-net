@@ -3,7 +3,7 @@ import alertLogo from "../../shared/images/Alert.svg";
 import searchLogo from "../../shared/images/search.svg";
 import profileLogo from "../../shared/images/Profile.svg";
 import addLogo from "../../shared/images/Plus.svg";
-import logo from "../../shared/images/Logo.png";
+import logo from "../../shared/images/logo.png";
 import { Logout } from "shared/ui/logout";
 import { FC, useMemo } from "react";
 import { Link } from "react-router-dom";
@@ -54,7 +54,6 @@ export const Navbar: FC = () => {
     <nav className={CnNavbar()}>
       <ul className={CnNavbar("container")}>
         <img className={CnNavbar("logo")} src={logo} alt="Logo" />
-
         {NavItems}
         <Link className={CnNavbar("button")} to={"/create-post"}>
           <img src={addLogo} alt="Add content" />

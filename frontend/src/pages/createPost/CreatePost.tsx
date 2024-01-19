@@ -47,6 +47,8 @@ export const CreatePost: FC = () => {
   const deletInput = useCallback(() => {
     setContentInput("");
   }, []);
+  console.log(contentInput, "contentInput");
+  console.log(values);
 
   return (
     <section className={CnCreatePost()}>
@@ -72,17 +74,16 @@ export const CreatePost: FC = () => {
             autoFocus
           />
         </div>
+
         {contentInput && (
           <div className={CnCreatePost("formInput_content")}>
             <Input
-              name={contentInput}
+              name=""
               type="url"
               view="post"
-              placeholder={
-                contentInput === "image"
-                  ? placeholderFromInputName.image
-                  : placeholderFromInputName.video
-              }
+              // placeholder={placeholderFromInputName[contentInput]}
+              value={values.image}
+              onChange={handleInputChange}
               autoFocus
             />
             <button onClick={deletInput}>

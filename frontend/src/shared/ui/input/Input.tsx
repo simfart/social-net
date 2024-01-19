@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import { cn } from "@bem-react/classname";
 
 import "./input.scss";
@@ -22,7 +23,7 @@ export const Input: FC<IInputProps> = ({
   ...props
 }) => {
   return (
-    <div className={CnInput()}>
+    <div className={CnInput("item")}>
       <input className={CnInput({ invalid: isInvalid, view })} {...props} />
       {errText && <span className={CnInput("message")}>{errText}</span>}
     </div>
