@@ -1,42 +1,39 @@
-const mongoose = require("mongoose");
-const validator = require("validator");
+const mongoose = require('mongoose')
+const validator = require('validator')
 // const Comment = require('./comment')
-const Comment = require("./comment.js").schema;
+const Comment = require('./comment.js').schema
 
 const postSchema = new mongoose.Schema(
   {
     description: {
       type: String,
-      required: [true, "description is required"],
+      required: [true, 'description is required'],
     },
     image: {
       type: String,
       validate: {
         validator: (value) => validator.isURL(value),
-        message: "Невалидный URL",
+        message: 'Невалидный URL',
       },
     },
     video: {
       type: String,
       validate: {
         validator: (value) => validator.isURL(value),
-        message: "Невалидный URL",
+        message: 'Невалидный URL',
       },
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
-      required: [true, "owner is required"],
+      ref: 'user',
+      required: [true, 'owner is required'],
     },
-    postId: {
-      type: Number,
-      required: [true, "PostId is required"],
-    },
+
     likes: {
       type: [
         {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "user",
+          ref: 'user',
         },
       ],
       default: [],
@@ -49,7 +46,7 @@ const postSchema = new mongoose.Schema(
   },
   {
     versionKey: false,
-  }
-);
+  },
+)
 
-module.exports = mongoose.model("Post", postSchema);
+module.exports = mongoose.model('Post', postSchema)

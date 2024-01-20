@@ -1,7 +1,7 @@
-const { celebrate, Joi } = require('celebrate');
-Joi.objectId = require('joi-objectid')(Joi);
+const { celebrate, Joi } = require('celebrate')
+Joi.objectId = require('joi-objectid')(Joi)
 
-const urlrRegex = require('../utils/constants');
+const urlrRegex = require('../utils/constants')
 
 const errCreateUser = celebrate({
   body: Joi.object().keys({
@@ -12,14 +12,14 @@ const errCreateUser = celebrate({
     location: Joi.string(),
     about: Joi.string(),
   }),
-});
+})
 
 const errLogin = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
   }),
-});
+})
 
 const errUpdateUser = celebrate({
   body: Joi.object().keys({
@@ -30,29 +30,25 @@ const errUpdateUser = celebrate({
     location: Joi.string(),
     about: Joi.string(),
   }),
-});
+})
 
 const errCreatePost = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required(),
-    director: Joi.string().required(),
-    duration: Joi.number().required(),
-    year: Joi.string().required(),
-    description: Joi.string().required(),
-    image: Joi.string().required().regex(urlrRegex),
-    trailer: Joi.string().required().regex(urlrRegex),
-    nameRU: Joi.string().required(),
-    nameEN: Joi.string().required(),
-    thumbnail: Joi.string().required().regex(urlrRegex),
-    postId: Joi.number().required(),
+    image: Joi.string().regex(urlrRegex),
+    video: Joi.string().regex(urlrRegex),
+    description: Joi.string().min(2).max(30).required(),
   }),
-});
+})
 
 const errPostId = celebrate({
   params: Joi.object().keys({
     postId: Joi.objectId(),
   }),
-});
+})
 module.exports = {
-  errCreateUser, errLogin, errUpdateUser, errCreatePost, errPostId,
-};
+  errCreateUser,
+  errLogin,
+  errUpdateUser,
+  errCreatePost,
+  errPostId,
+}

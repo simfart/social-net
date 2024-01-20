@@ -1,77 +1,100 @@
-import { FC, FormEvent, useCallback, useState } from "react";
-import { Navbar } from "widgets/menu";
-import { ContentMenu } from "./contentMenu";
-import { useForm } from "shared/hooks";
-import { deleteIcon } from "shared/images";
-import { Button } from "../../shared/ui/button";
-import { Input } from "../../shared/ui";
+import { FC, FormEvent, useCallback, useState } from 'react'
+import { cn } from '@bem-react/classname'
+import { useUser } from 'shared/hooks/useUser'
+import { useNavigate } from 'react-router-dom'
+import { Navbar } from 'widgets/menu'
+import { ContentMenu } from './contentMenu'
+import { useForm } from 'shared/hooks'
+import { deleteIcon } from 'shared/images'
+import { Button } from 'shared/ui/button'
+import { Input } from 'shared/ui'
+import { useNewPost } from 'shared/hooks'
+import { Loader } from 'shared/ui/loader/Loader'
 
-import { useNewPost } from "shared/hooks";
+import './CreatePost.scss'
 
-import "./CreatePost.scss";
-import { cn } from "@bem-react/classname";
-import { useUser } from "shared/hooks/useUser";
-
-const CnCreatePost = cn("createPost");
+const CnCreatePost = cn('createPost')
 
 const initialFormData = {
-  description: "",
-  image: "",
-  video: "",
-};
+  description: '',
+  image: '',
+  video: '',
+}
 
 const placeholderFromInputName = {
-  description: "What’s on your mind?",
-  image: "Paste the URL of the image",
-  video: "Paste the link to the video from YouTube",
-};
+  description: 'What’s on your mind?',
+  image: 'Paste the URL of the image',
+  video: 'Paste the link to the video from YouTube',
+}
 
 export const CreatePost: FC = () => {
-  const { values, isValid, errors, clearForm, handleInputChange } =
-    useForm(initialFormData);
+  const navigate = useNavigate()
 
-  const { mutate, isLoading } = useNewPost();
-  const [contentInput, setContentInput] = useState<string>();
+  const { values, isValid, errors, clearForm, handleInputChange } =
+    useForm(initialFormData)
+
+  const { mutate, isLoading } = useNewPost()
+  const [contentInput, setContentInput] = useState<string>()
 
   const addImg = useCallback(() => {
-    setContentInput("image");
-  }, [contentInput]);
+    setContentInput('image')
+  }, [])
 
   const addVideo = useCallback(() => {
-    setContentInput("video");
-  }, [contentInput]);
+    setContentInput('video')
+  }, [])
 
   const deletInput = useCallback(() => {
-    setContentInput("");
-    values.image = "";
-    values.video = "";
-  }, [contentInput]);
+    setContentInput('')
+    values.image = ''
+    values.video = ''
+  }, [values])
 
-  const { data: currentUser } = useUser();
-  const handleSubmit = useCallback(
+  const { data: currentUser } = useUser()
+
+  const onCreatePost = useCallback(
     (e: FormEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      mutate(values);
-      clearForm();
+      e.preventDefault()
+
+      const valuesArr = Object.entries(values)
+
+      const filteredArr = valuesArr.filter(function ([key, value]) {
+        return value !== ''
+      })
+      const newValues = Object.fromEntries(filteredArr)
+      mutate(newValues)
+      clearForm()
+      navigate('/profile', { replace: true })
     },
-    [mutate, values, clearForm]
-  );
+    [values, mutate, clearForm, navigate],
+  )
+
+  const onDiscard = useCallback(
+    (e: FormEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+      clearForm()
+      navigate('/profile', { replace: true })
+    },
+    [clearForm, navigate],
+  )
+
+  if (isLoading) return <Loader />
 
   return (
     <section className={CnCreatePost()}>
-      <Navbar />
-      <form className={CnCreatePost("form")}>
-        <div className={CnCreatePost("formMenu")}>
-          <Button view="discard" textButton="Discard" />
+      {/* <Navbar /> */}
+      <form className={CnCreatePost('form')}>
+        <div className={CnCreatePost('formMenu')}>
+          <Button onClick={onDiscard} view="discard" textButton="Discard" />
           <h2>Create</h2>
           <Button
-            onClick={handleSubmit}
+            onClick={onCreatePost}
             isInvalid={!isValid}
             view="publish"
             textButton="Publish"
           />
         </div>
-        <div className={CnCreatePost("formInput")}>
+        <div className={CnCreatePost('formInput')}>
           <img src={currentUser?.data.avatar} alt="" />
           <Input
             name="description"
@@ -87,8 +110,8 @@ export const CreatePost: FC = () => {
           />
         </div>
 
-        {(contentInput == "image" || contentInput == "video") && (
-          <div className={CnCreatePost("formInput_content")}>
+        {(contentInput == 'image' || contentInput == 'video') && (
+          <div className={CnCreatePost('formInput_content')}>
             <Input
               name={contentInput}
               type="url"
@@ -109,5 +132,5 @@ export const CreatePost: FC = () => {
         <ContentMenu onClickImg={addImg} onClickVideo={addVideo} />
       </form>
     </section>
-  );
-};
+  )
+}

@@ -1,7 +1,7 @@
 .createPost {
-  max-width: 900px;
-  display: grid;
-  grid-template-columns: auto 1fr;
+  max-width: 800px;
+  // display: flex;
+  // grid-template-columns: auto 1fr;
   margin: 0 auto;
 
   h2 {
@@ -18,6 +18,7 @@
     display: flex;
     flex-direction: column;
     padding: 30px;
+    margin: 0 auto;
   }
 
   &-formMenu {
@@ -65,7 +66,12 @@
     }
   }
 
-  @media screen and (max-width: 600px) {
+}
+@media screen and (max-width: 600px) {
+  .createPost {
+ 
+   
+
     button,
     h2 {
       font-size: 14px;

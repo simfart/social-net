@@ -1,45 +1,45 @@
-import { AuthForm } from "../../../entities/auth-form";
-import { AuthContainer } from "shared/auth-container";
-import { useForm } from "shared/hooks";
-import { Input } from "shared/ui";
-import { Loader } from "shared/ui/loader/Loader";
-import { useLogin } from "shared/hooks";
-import { FC, memo, useCallback, useMemo } from "react";
+import { AuthForm } from '../../../entities/auth-form'
+import { AuthContainer } from 'shared/auth-container'
+import { useForm } from 'shared/hooks'
+import { Input } from 'shared/ui'
+import { Loader } from 'shared/ui/loader/Loader'
+import { useLogin } from 'shared/hooks'
+import { FC, memo, useCallback, useMemo } from 'react'
 
 const initialFormData = {
-  email: "",
-  password: "",
-};
+  email: '',
+  password: '',
+}
 
 const placeholderFromInputName = {
-  email: "E-Mail",
-  password: "Password",
-};
+  email: 'E-Mail',
+  password: 'Password',
+}
 
 const typeFromInputName = {
-  email: "email",
-  password: "password",
-};
+  email: 'email',
+  password: 'password',
+}
 
 export const Login: FC = memo(() => {
   const { values, isValid, errors, handleInputChange, clearForm } =
-    useForm(initialFormData);
+    useForm(initialFormData)
 
-  const { mutate, isLoading } = useLogin();
+  const { mutate, isLoading } = useLogin()
 
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
+      e.preventDefault()
 
-      mutate(values);
+      mutate(values)
 
-      clearForm();
+      clearForm()
     },
-    [mutate, values, clearForm]
-  );
+    [clearForm, mutate, values],
+  )
 
   const formContent = useMemo(() => {
-    const valuesKeys = Object.keys(values) as Array<keyof typeof values>;
+    const valuesKeys = Object.keys(values) as Array<keyof typeof values>
 
     return valuesKeys.map((formKey) => {
       return (
@@ -57,11 +57,11 @@ export const Login: FC = memo(() => {
           maxLength={15}
           errText={errors[formKey]}
         />
-      );
-    });
-  }, [values, errors, handleInputChange]);
+      )
+    })
+  }, [values, errors, handleInputChange])
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loader />
 
   return (
     <AuthContainer
@@ -79,5 +79,5 @@ export const Login: FC = memo(() => {
         />
       }
     />
-  );
-});
+  )
+})

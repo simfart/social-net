@@ -6,14 +6,7 @@ export const login = async (payload: { email: string; password: string }) => {
     .then((res) => res.data);
 };
 
-export const register = async (payload: {
-  email: string;
-  password: string;
-  name: string;
-  avatar?: string;
-  location?: string;
-  about?: string;
-}) => {
+export const register = async (payload:{[k:string]:string}) => {
   return await api.post(`/signup`, payload).then((res) => res.data);
 };
 
