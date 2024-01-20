@@ -34,7 +34,7 @@ export const AuthForm: FC<IAuthFormProps> = ({
       <h2>{title}</h2>
       <span className={CnForm("subtitle")}>{subtitle}</span>
       <fieldset>{children}</fieldset>
-      <Button isInvalid={isInvalid} textButton={textButton} view="auth" />
+      <Button disabled={isInvalid} textButton={textButton} view="auth" />
       <span>
         {textSpan}
         <Link to={linkSpan} className={CnForm("link")}>

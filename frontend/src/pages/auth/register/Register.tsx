@@ -45,9 +45,7 @@ export const Register: FC = memo(() => {
       e.preventDefault()
 
       const valuesArr = Object.entries(values)
-      const filteredArr = valuesArr.filter(function ([key, value]) {
-        return value !== ''
-      })
+      const filteredArr = valuesArr.filter(([_, value]) => value !== '')
       const newValues = Object.fromEntries(filteredArr)
 
       mutate(newValues)

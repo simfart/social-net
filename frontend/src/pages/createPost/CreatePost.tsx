@@ -27,14 +27,18 @@ const placeholderFromInputName = {
   video: 'Paste the link to the video from YouTube',
 }
 
+enum CreatePostContentInput {
+  VIDEO = 'video',
+  IMAGE = 'image',
+}
+
 export const CreatePost: FC = () => {
   const navigate = useNavigate()
-
-  const { values, isValid, errors, clearForm, handleInputChange } =
+  const { values, isValid, errors, clearForm, handleInputChange, clearFields } =
     useForm(initialFormData)
-
   const { mutate, isLoading } = useNewPost()
-  const [contentInput, setContentInput] = useState<string>()
+
+  const [contentInput, setContentInput] = useState<string | null>(null)
 
   const addImg = useCallback(() => {
     setContentInput('image')
@@ -45,10 +49,9 @@ export const CreatePost: FC = () => {
   }, [])
 
   const deletInput = useCallback(() => {
-    setContentInput('')
-    values.image = ''
-    values.video = ''
-  }, [values])
+    setContentInput(null)
+    clearFields(['video', 'image'])
+  }, [clearFields])
 
   const { data: currentUser } = useUser()
 
@@ -57,14 +60,14 @@ export const CreatePost: FC = () => {
       e.preventDefault()
 
       const valuesArr = Object.entries(values)
-
-      const filteredArr = valuesArr.filter(function ([key, value]) {
-        return value !== ''
-      })
+      const filteredArr = valuesArr.filter(([_, value]) => value !== '')
       const newValues = Object.fromEntries(filteredArr)
+
       mutate(newValues)
+
       clearForm()
-      navigate('/profile', { replace: true })
+
+      navigate('/profile')
     },
     [values, mutate, clearForm, navigate],
   )
@@ -72,8 +75,10 @@ export const CreatePost: FC = () => {
   const onDiscard = useCallback(
     (e: FormEvent<HTMLButtonElement>) => {
       e.preventDefault()
+
       clearForm()
-      navigate('/profile', { replace: true })
+
+      navigate('/profile')
     },
     [clearForm, navigate],
   )
@@ -85,14 +90,13 @@ export const CreatePost: FC = () => {
       {/* <Navbar /> */}
       <form className={CnCreatePost('form')}>
         <div className={CnCreatePost('formMenu')}>
-          <Button onClick={onDiscard} view="discard" textButton="Discard" />
+          <Button onClick={onDiscard} view="discard">
+            Discard
+          </Button>
           <h2>Create</h2>
-          <Button
-            onClick={onCreatePost}
-            isInvalid={!isValid}
-            view="publish"
-            textButton="Publish"
-          />
+          <Button onClick={onCreatePost} disabled={!isValid} view="publish">
+            Publish
+          </Button>
         </div>
         <div className={CnCreatePost('formInput')}>
           <img src={currentUser?.data.avatar} alt="" />

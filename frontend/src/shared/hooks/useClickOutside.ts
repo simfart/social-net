@@ -1,8 +1,8 @@
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren, useEffect } from 'react'
 
 interface IOutsideProps extends PropsWithChildren {
-  divElement: React.MutableRefObject<HTMLDivElement | null>;
-  handler: () => void;
+  divElement: React.MutableRefObject<HTMLDivElement | null>
+  handler: () => void
 }
 
 export const useClickOutside = ({ divElement, handler }: IOutsideProps) => {
@@ -12,10 +12,12 @@ export const useClickOutside = ({ divElement, handler }: IOutsideProps) => {
         divElement.current &&
         !divElement.current.contains(event.target as Node)
       ) {
-        handler();
+        handler()
       }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
-};
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [divElement, handler])
+}

@@ -1,34 +1,28 @@
-import { cn } from "@bem-react/classname";
-import { FC } from "react";
+import { cn } from '@bem-react/classname'
+import { FC } from 'react'
 
-import "./button.scss";
+import './button.scss'
 
-const CnButton = cn("button");
+const CnButton = cn('button')
 
 interface IButtonProps
   extends React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  view?: "default" | "auth" | "discard" | "publish";
-  isInvalid?: boolean;
-  textButton?: string;
+  view?: 'default' | 'auth' | 'discard' | 'publish'
 }
 
 export const Button: FC<IButtonProps> = ({
-  isInvalid,
-  view = "default",
-  textButton,
-
+  view = 'default',
+  disabled,
   ...props
 }) => {
   return (
     <button
-      aria-label={textButton}
-      className={CnButton({ invalid: isInvalid, view })}
+      disabled={disabled}
+      className={CnButton({ disabled, view })}
       {...props}
-    >
-      {textButton}
-    </button>
-  );
-};
+    />
+  )
+}

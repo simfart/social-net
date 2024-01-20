@@ -22,6 +22,7 @@
     ul {
       list-style: none;
     }
+
     li {
       text-decoration: none;
       list-style: none;
@@ -33,6 +34,7 @@
       border: none;
       padding: 0 16px 0;
     }
+
     img {
       width: 24px;
       height: 24px;
@@ -52,31 +54,37 @@
 
     &::before,
     ::after {
-      content: "";
+      content: '';
       position: absolute;
       display: block;
     }
+
     &::before {
-      content: url("../../../shared/images/Add.svg");
+      content: url('../../../shared/images/Add.svg');
+
+      width: 32px;
+      height: 32px;
+
       transition: transform 0.3s 0.15s;
     }
+
     &::after {
       transition: transform 0.3s 0.15s;
     }
   }
 }
 
-.content-checkbox:checked + .content-image::before {
+.content-checkbox:checked+.content-image::before {
   transform: rotate(45deg);
   transition: transform 0.3s 0.15s;
 }
 
-.content-checkbox:checked + .content-image::after {
+.content-checkbox:checked+.content-image::after {
   transform: rotate(-45deg);
   transition: transform 0.3s 0.15s;
 }
 
-.content-checkbox:checked ~ .content-list {
+.content-checkbox:checked~.content-list {
   opacity: 1;
   transform: translateY(0);
 }
