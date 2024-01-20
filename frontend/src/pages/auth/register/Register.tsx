@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AuthForm } from '../../../entities/auth-form'
 import { useForm } from 'shared/hooks'
 import { Input } from 'shared/ui'
@@ -34,6 +33,15 @@ const typeFromInputName = {
   about: 'text',
 }
 
+const requireFromInputName = {
+  email: true,
+  password: true,
+  name: true,
+  avatar: false,
+  location: false,
+  about: false,
+}
+
 export const Register: FC = memo(() => {
   const { values, isValid, errors, clearForm, handleInputChange } =
     useForm(initialFormData)
@@ -66,7 +74,7 @@ export const Register: FC = memo(() => {
           type={typeFromInputName[formKey]}
           isInvalid={!!errors[formKey]}
           placeholder={placeholderFromInputName[formKey]}
-          // required={true}
+          required={requireFromInputName[formKey]}
           value={values[formKey]}
           onChange={handleInputChange}
           minLength={2}

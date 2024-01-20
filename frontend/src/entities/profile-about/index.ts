@@ -1,0 +1,3 @@
+export { ProfileAbout } from "./ProfileAbout";
+
+

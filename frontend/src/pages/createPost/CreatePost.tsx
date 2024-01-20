@@ -38,14 +38,15 @@ export const CreatePost: FC = () => {
     useForm(initialFormData)
   const { mutate, isLoading } = useNewPost()
 
-  const [contentInput, setContentInput] = useState<string | null>(null)
+  const [contentInput, setContentInput] =
+    useState<CreatePostContentInput | null>(null)
 
   const addImg = useCallback(() => {
-    setContentInput('image')
+    setContentInput(CreatePostContentInput.IMAGE)
   }, [])
 
   const addVideo = useCallback(() => {
-    setContentInput('video')
+    setContentInput(CreatePostContentInput.VIDEO)
   }, [])
 
   const deletInput = useCallback(() => {
@@ -62,7 +63,7 @@ export const CreatePost: FC = () => {
       const valuesArr = Object.entries(values)
       const filteredArr = valuesArr.filter(([_, value]) => value !== '')
       const newValues = Object.fromEntries(filteredArr)
-
+      console.log(newValues)
       mutate(newValues)
 
       clearForm()

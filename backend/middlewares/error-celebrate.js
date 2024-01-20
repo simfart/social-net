@@ -36,7 +36,7 @@ const errCreatePost = celebrate({
   body: Joi.object().keys({
     image: Joi.string().regex(urlrRegex),
     video: Joi.string().regex(urlrRegex),
-    description: Joi.string().min(2).max(30).required(),
+    description: Joi.string().min(2).max(500).required(),
   }),
 })
 

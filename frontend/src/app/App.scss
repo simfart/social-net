@@ -1,6 +1,11 @@
-@import "./styles";
+@import './styles';
 
 body {
   background-color: #181a1c;
-  font-family: "HK Grotesk", Arial, sans-serif;
+  font-family: 'HK Grotesk', Arial, sans-serif;
+}
+
+.app {
+  max-width: 1280px;
+  margin: 0 auto;
 }
