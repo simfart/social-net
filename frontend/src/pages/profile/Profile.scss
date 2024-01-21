@@ -1,12 +1,18 @@
-.profile{
-    display: grid;
-    grid-template-columns: auto 1fr;
+.profile {
+  display: grid;
+  grid-template-columns: auto 1fr;
 
+  &-content {
+    padding: 30px;
+  }
 }
 
-@media screen and (max-width: 600px) {
-    .profile{
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr auto;    
+@media screen and (max-width: 800px) {
+  .profile {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    &-content {
+      padding: 0;
     }
   }
+}

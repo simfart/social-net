@@ -36,6 +36,20 @@
       background: linear-gradient(90deg, #f62e8e 0%, #ac1af0 102.84%);
       color: #fff;
     }
+
+    &_editProfile {
+      padding: 6px 32px;
+      border-radius: 30px;
+      border: 1px solid #727477;
+      background: #181a1c;
+      color: #fff;
+      text-align: center;
+
+      font-size: 14px;
+
+      font-weight: 700;
+      line-height: 24px; /* 171.429% */
+    }
   }
 
   &_disabled {

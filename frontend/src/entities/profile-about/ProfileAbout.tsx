@@ -1,8 +1,8 @@
 import { FC, PropsWithChildren } from 'react'
-
-import { backgroundProfile } from 'shared/images'
-import './ProfileAbout.scss'
+import { EditProfile } from 'features/edit-profile'
 import { cn } from '@bem-react/classname'
+
+import './ProfileAbout.scss'
 
 export interface IProfileAbout extends PropsWithChildren {
   data: Record<string, string>
@@ -12,15 +12,18 @@ const CnAbout = cn('profileAbout')
 export const ProfileAbout: FC<IProfileAbout> = ({ data }) => {
   return (
     <div className={CnAbout()}>
-      <img
-        className={CnAbout('cover')}
-        src={backgroundProfile}
-        alt="background Profile"
-      />
-      <img className={CnAbout('avatar')} src={data.avatar} alt="Photo" />
-      <h1>{data.name} </h1>
-      <p>{data.location}</p>
-      <p>{data.about}</p>
+      <div className={CnAbout('cover')}>
+        <img className={CnAbout('avatar')} src={data.avatar} alt="Photo" />
+        <div className={CnAbout('edit')}>
+          <EditProfile />
+        </div>
+      </div>
+
+      <div className={CnAbout('container')}>
+        <h1 className={CnAbout({ details: 'title' })}>{data.name} </h1>
+        <p className={CnAbout({ details: 'subtitle' })}>{data.location}</p>
+        <p className={CnAbout({ details: 'text' })}>{data.about}</p>
+      </div>
     </div>
   )
 }

@@ -1,0 +1,51 @@
+.actions {
+  display: flex;
+  flex-direction: row;
+
+  margin-left: 12px;
+
+  &-numbers {
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+    h3,
+    p {
+      padding: 0;
+      font-size: 14px;
+      line-height: 18px; /* 128.571% */
+    }
+    h3 {
+      color: #fff;
+      font-weight: 700;
+      margin: 0 4px 0 0;
+    }
+    p {
+      margin: 0;
+      color: #727477;
+      font-weight: 600;
+    }
+  }
+
+  &-edit {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .actions {
+    justify-content: space-between;
+    margin: 0 24px;
+
+    &-numbers {
+      flex-direction: column;
+      margin-right: 0;
+      h3 {
+        margin: 0;
+      }
+    }
+
+    &-edit {
+      display: inline;
+    }
+  }
+}
