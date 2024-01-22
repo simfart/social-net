@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react'
-import { EditProfile } from 'features/edit-profile'
+import { EditButton } from 'features/edit-button'
 import { cn } from '@bem-react/classname'
 
 import './ProfileAbout.scss'
@@ -15,7 +15,7 @@ export const ProfileAbout: FC<IProfileAbout> = ({ data }) => {
       <div className={CnAbout('cover')}>
         <img className={CnAbout('avatar')} src={data.avatar} alt="Photo" />
         <div className={CnAbout('edit')}>
-          <EditProfile />
+          <EditButton />
         </div>
       </div>
 

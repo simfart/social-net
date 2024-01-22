@@ -11,7 +11,7 @@
   }
 
   &-auth {
-    min-width: 276px;
+    width: 276px;
     background: rgba(0, 0, 0, 0);
     padding: 14px 16px;
     border-radius: 12px;
@@ -39,6 +39,21 @@
   @media screen and (max-width: 600px) {
     &_post {
       font-size: 16px;
+    }
+  }
+
+  &-edit {
+    width: 100%;
+    background: rgb(0 0 0 / 14%);
+    padding: 14px 16px;
+    // border-radius: 12px;
+    border: none;
+    border-bottom: 1px solid rgb(255 255 255 / 14%);
+    color: #fff;
+    margin-top: 10px;
+
+    &_invalid {
+      border-bottom: 1px solid #cd407b;
     }
   }
 }

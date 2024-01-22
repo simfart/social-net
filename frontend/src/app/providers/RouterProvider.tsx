@@ -1,11 +1,12 @@
-import { FC } from "react";
-import { Login, Register } from "pages/auth";
-import { Routes, Route } from "react-router-dom";
-import { PageNotFound } from "shared/ui";
-import { ProtectedRoute } from "shared/ui";
-import { CreatePost } from "pages/createPost";
+import { FC } from 'react'
+import { Login, Register } from 'pages/auth'
+import { Routes, Route } from 'react-router-dom'
+import { PageNotFound } from 'shared/ui'
+import { ProtectedRoute } from 'shared/ui'
+import { CreatePost } from 'pages/createPost'
 
-import { Profile } from "pages/profile";
+import { Profile } from 'pages/profile'
+import { EditProfile } from 'pages/editProfile'
 
 export const RouterProvider: FC = () => {
   return (
@@ -16,6 +17,7 @@ export const RouterProvider: FC = () => {
       <Route path="/profile" element={<Profile />} /> {/* protected */}
       <Route path="/create-post" element={<CreatePost />} /> {/* sprotected */}
       <Route path="*" element={<PageNotFound />} />
+      <Route path="/edit-profile" element={<EditProfile />} />
     </Routes>
-  );
-};
+  )
+}

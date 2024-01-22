@@ -1,31 +1,31 @@
-import { FC } from "react";
+import { FC } from 'react'
 
-import { cn } from "@bem-react/classname";
+import { cn } from '@bem-react/classname'
 
-import "./input.scss";
+import './input.scss'
 
-const CnInput = cn("input");
+const CnInput = cn('input')
 
 interface IInputProps
   extends React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  isInvalid?: boolean;
-  view?: "default" | "auth" | "post";
-  errText?: string;
+  isInvalid?: boolean
+  view?: 'default' | 'auth' | 'post' | 'edit'
+  errText?: string
 }
 
 export const Input: FC<IInputProps> = ({
   isInvalid,
-  view = "default",
+  view = 'default',
   errText,
   ...props
 }) => {
   return (
-    <div className={CnInput("item")}>
+    <div className={CnInput('item')}>
       <input className={CnInput(view, { invalid: isInvalid })} {...props} />
-      {errText && <span className={CnInput("message")}>{errText}</span>}
+      {errText && <span className={CnInput('message')}>{errText}</span>}
     </div>
-  );
-};
+  )
+}

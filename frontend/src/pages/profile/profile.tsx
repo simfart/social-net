@@ -12,8 +12,6 @@ const CnProfile = cn('profile')
 
 export const Profile: FC = () => {
   const { data: user } = useUser()
-  console.log(user.data)
-  console.log(user.data.followers.length)
 
   return (
     <section className={CnProfile()}>

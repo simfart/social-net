@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { EditProfile } from 'features/edit-profile'
+import { EditButton } from 'features/edit-button'
 import { cn } from '@bem-react/classname'
 
 import './ProfileActions.scss'
@@ -22,7 +22,7 @@ export const ProfileActions: FC<IFollow> = ({ followers, followings }) => {
         <p>Following</p>
       </div>
       <div className={CnActions('edit')}>
-        <EditProfile />
+        <EditButton />
       </div>
     </div>
   )
