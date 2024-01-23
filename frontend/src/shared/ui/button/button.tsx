@@ -10,7 +10,7 @@ interface IButtonProps
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  view?: 'default' | 'auth' | 'discard' | 'publish' | 'editProfile'
+  view?: 'default' | 'auth' | 'discard' | 'publish' | 'edit' | 'onedit'
 }
 
 export const Button: FC<IButtonProps> = ({

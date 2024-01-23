@@ -1,8 +1,10 @@
-import { FC, useCallback, useEffect, useMemo, useState } from 'react'
-import { FormContainer } from 'shared/form-container'
+import { FC, FormEvent, useCallback, useEffect, useMemo } from 'react'
 import { useForm } from 'shared/hooks'
 import { useUser } from 'shared/hooks/useUser'
 import { Input } from 'shared/ui'
+import { AuthForm } from '../../entities/auth-form/AuthForm'
+
+import { AuthContainer } from 'shared/auth-container'
 import {
   initialFormData,
   placeholderFromInputName,
@@ -11,8 +13,10 @@ import {
 } from 'shared/ui/initialData'
 
 import './EditProfile.scss'
+import { useNavigate } from 'react-router-dom'
 
 export const EditProfile: FC = () => {
+  const navigate = useNavigate()
   const { data: currentUser } = useUser()
 
   const { values, isValid, errors, clearForm, handleInputChange, setValues } =
@@ -26,8 +30,15 @@ export const EditProfile: FC = () => {
 
   const { password: _, ...newFormData } = initialFormData
 
-  const handleCreatePost = useCallback(() => {}, [])
-  const handleDiscard = useCallback(() => {}, [])
+  const handleEdit = useCallback(() => {}, [])
+  const onDiscard = useCallback(
+    (e: FormEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+      clearForm()
+      navigate('/profile')
+    },
+    [clearForm, navigate],
+  )
 
   const formContent = useMemo(() => {
     const valueKeys = Object.keys(newFormData) as Array<
@@ -47,18 +58,30 @@ export const EditProfile: FC = () => {
           minLength={2}
           maxLength={100}
           errText={errors[formKey]}
-          view="edit"
+          view="auth"
         />
       )
     })
   }, [newFormData, errors, values, handleInputChange])
 
   return (
-    <FormContainer
-      isValid={isValid}
-      onCreatePost={handleCreatePost}
-      onDiscard={handleDiscard}
-      children={<div className="editForm">{formContent}</div>}
+    <AuthContainer
+      page="edit"
+      children={
+        <AuthForm
+          children={formContent}
+          handleSubmit={handleEdit}
+          handleDiscard={onDiscard}
+          isInvalid={isValid}
+          title="Edit your profile"
+          subtitle=""
+          linkSpan="./"
+          textButton="Eidit"
+          textLinkSpan="./"
+          textSpan="Edit"
+          page="edit"
+        />
+      }
     />
   )
 }

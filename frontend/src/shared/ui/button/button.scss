@@ -15,6 +15,7 @@
       border: none;
       margin: 25px 0;
     }
+
     &_discard,
     &_publish {
       font-size: 20px;
@@ -37,18 +38,34 @@
       color: #fff;
     }
 
-    &_editProfile {
+    &_edit {
+      width: 100%;
+      padding: 14px 10px;
+      border-radius: 12px;
+      border-radius: 12px;
+      background: linear-gradient(
+        91deg,
+        #e948c5 9.91%,
+        #cd407b 53.29%,
+        #75042d 91.56%
+      );
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      margin: 25px 0;
+    }
+
+    &_onedit {
       padding: 6px 32px;
       border-radius: 30px;
       border: 1px solid #727477;
       background: #181a1c;
       color: #fff;
       text-align: center;
-
       font-size: 14px;
-
       font-weight: 700;
-      line-height: 24px; /* 171.429% */
+      line-height: 24px;
+      cursor: pointer;
     }
   }
 

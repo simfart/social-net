@@ -17,10 +17,10 @@ export const Profile: FC = () => {
     <section className={CnProfile()}>
       <Navbar />
       <div className={CnProfile('content')}>
-        <ProfileAbout data={user.data} />
+        <ProfileAbout data={user?.data} />
         <ProfileActions
-          followers={user.data.followers?.length}
-          followings={user.data.followings?.length}
+          followers={user?.data.followers?.length}
+          followings={user?.data.followings?.length}
         />
         <div className={CnProfile('actions')}></div>
         <div className={CnProfile('posts-filter')}></div>

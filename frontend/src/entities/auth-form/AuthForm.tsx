@@ -1,6 +1,8 @@
-import { FC, FormEventHandler, PropsWithChildren } from 'react'
-import { Link } from 'react-router-dom'
+import { FC, FormEvent, FormEventHandler, PropsWithChildren } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { Button } from 'shared/ui/button'
+import { logo } from 'shared/images'
+
 import './AuthForm.scss'
 
 import { cn } from '@bem-react/classname'
@@ -16,6 +18,9 @@ interface IAuthFormProps extends PropsWithChildren {
   textLinkSpan: string
   isInvalid: boolean
   handleSubmit: FormEventHandler<HTMLFormElement>
+  handleDiscard?: (e: FormEvent<HTMLButtonElement>) => void
+
+  page?: 'default' | 'auth' | 'discard' | 'publish' | 'edit'
 }
 
 export const AuthForm: FC<IAuthFormProps> = ({
@@ -28,21 +33,32 @@ export const AuthForm: FC<IAuthFormProps> = ({
   textLinkSpan,
   handleSubmit,
   isInvalid,
+  page,
+  handleDiscard,
 }) => {
+  const location = useLocation()
+
   return (
     <form className={CnForm()} onSubmit={handleSubmit} noValidate>
+      <img className={CnForm('logo')} src={logo} alt="Logo" />
       <h2>{title}</h2>
       <span className={CnForm('subtitle')}>{subtitle}</span>
       <fieldset>{children}</fieldset>
-      <Button disabled={isInvalid} view="auth">
+      <Button disabled={isInvalid} view={page}>
         {textButton}
       </Button>
-      <span>
-        {textSpan}
-        <Link to={linkSpan} className={CnForm('link')}>
-          {textLinkSpan}
-        </Link>
-      </span>
+      {location.pathname === '/edit-profile' ? (
+        <Button view="discard" onClick={handleDiscard}>
+          Discard
+        </Button>
+      ) : (
+        <span>
+          {textSpan}
+          <Link to={linkSpan} className={CnForm('link')}>
+            {textLinkSpan}
+          </Link>
+        </span>
+      )}
     </form>
   )
 }

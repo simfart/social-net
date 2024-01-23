@@ -76,6 +76,7 @@ export const Login: FC = memo(() => {
           textSpan="Don’t have an account ? "
           isInvalid={!isValid}
           children={formContent}
+          page="auth"
         />
       }
     />

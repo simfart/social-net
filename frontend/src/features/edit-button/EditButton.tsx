@@ -8,7 +8,7 @@ export const EditButton: FC = () => {
 
   const onEdit = () => navigate('/edit-profile')
   return (
-    <Button view="editProfile" onClick={onEdit}>
+    <Button view="onedit" onClick={onEdit}>
       Edit Profile
     </Button>
   )

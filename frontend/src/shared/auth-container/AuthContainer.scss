@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   justify-content: center;
-  margin: 114px auto;
+  margin: 60px auto 0;
   max-width: 690px;
 }
 
@@ -17,7 +17,14 @@
     top: -50px;
     left: 20px;
     margin: 0;
+
+    &_page {
+      &_edit {
+        background: linear-gradient(180deg, #61003a 0%, #2d0a30 100%);
+      }
+    }
   }
+
   &-small {
     width: 220px;
     height: 220px;
@@ -31,5 +38,11 @@
     right: 110px;
     overflow: hidden;
     margin: 0;
+
+    &_page {
+      &_edit {
+        background: linear-gradient(180deg, #61004b 0%, #220a30 100%);
+      }
+    }
   }
 }

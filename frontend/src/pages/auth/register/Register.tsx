@@ -101,6 +101,7 @@ export const Register: FC = memo(() => {
           handleSubmit={onSubmit}
           isInvalid={!isValid}
           children={formContent}
+          page="auth"
         />
       }
     />

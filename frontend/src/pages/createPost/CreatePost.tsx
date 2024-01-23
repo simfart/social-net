@@ -2,7 +2,6 @@ import { FC, FormEvent, useCallback, useState } from 'react'
 import { cn } from '@bem-react/classname'
 import { useUser } from 'shared/hooks/useUser'
 import { useNavigate } from 'react-router-dom'
-import { Navbar } from 'widgets/menu'
 import { ContentMenu } from './contentMenu'
 import { useForm } from 'shared/hooks'
 import { deleteIcon } from 'shared/images'
@@ -10,6 +9,8 @@ import { Button } from 'shared/ui/button'
 import { Input } from 'shared/ui'
 import { useNewPost } from 'shared/hooks'
 import { Loader } from 'shared/ui/loader/Loader'
+import { AuthContainer } from '../../shared/auth-container/AuthContainer'
+import { AuthForm } from '../../entities/auth-form/AuthForm'
 
 import './CreatePost.scss'
 
@@ -88,7 +89,6 @@ export const CreatePost: FC = () => {
 
   return (
     <section className={CnCreatePost()}>
-      {/* <Navbar /> */}
       <form className={CnCreatePost('form')}>
         <div className={CnCreatePost('formMenu')}>
           <Button onClick={onDiscard} view="discard">
