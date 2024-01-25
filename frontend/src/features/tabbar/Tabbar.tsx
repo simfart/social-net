@@ -1,39 +1,36 @@
 import { FC, useState } from 'react'
+import { TabbarComponent } from './tabbar-component'
 
 import './Tabbar.scss'
 
 import { cn } from '@bem-react/classname'
-import { TabbarComponent } from 'shared/components/tabbar'
+
 export const CnTabbar = cn('tabbar')
 
-interface MySocial {
-  id: number
+interface Tab {
   name: string
-  link: string
+  component: React.ReactNode
 }
 
-const socials: MySocial[] = [
-  { id: 11, name: 'WebSite', link: 'fabiobiondi.dev' },
-  { id: 12, name: 'Youtube', link: 'YT' },
-  { id: 13, name: 'Twitch', link: 'twitch' },
+const tabs: Tab[] = [
+  { name: 'Posts', component: <div>ииии</div> },
+  { name: 'Liked', component: <div>ппп</div> },
+  { name: 'Tagged', component: <div>иипппии</div> },
 ]
 export const Tabbar: FC = () => {
-  const [selectedSocial, setSelectedSocial] = useState<MySocial>(socials[0])
+  const [selectedTab, setSelectedTab] = useState<Tab>(tabs[0])
 
-  function selectHandler(item: MySocial, selectedIndex: number) {
-    setSelectedSocial(item)
+  function selectHandler(item: Tab) {
+    setSelectedTab(item)
   }
   return (
     <div>
-      <TabbarComponent<MySocial>
-        selectedItem={selectedSocial}
-        items={socials}
+      <TabbarComponent<Tab>
+        selectedItem={selectedTab}
+        items={tabs}
         onTabClick={selectHandler}
       />
-      {selectedSocial.link === 'twitch' && <div>ggggg</div>}
-      <div className="border border-slate-200 border-solid rounded my-3 p-5">
-        <a href={selectedSocial.link}>Visit {selectedSocial.name}</a>
-      </div>
+      {selectedTab.name && selectedTab.component}
     </div>
   )
 }

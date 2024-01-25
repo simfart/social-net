@@ -1,13 +1,15 @@
-const router = require('express').Router();
+const router = require('express').Router()
 const {
-  getPost,
+  getUserPost,
   createPost,
   deletePost,
-} = require('../controllers/post');
-const { errCreatePost, errPostId } = require('../middlewares/error-celebrate');
+  getPosts,
+} = require('../controllers/post')
+const { errCreatePost, errPostId } = require('../middlewares/error-celebrate')
 
-router.get('/', getPost);
-router.post('/', errCreatePost, createPost);
-router.delete('/:postId', errPostId, deletePost);
+router.get('/', getPosts)
+router.get('/my', getUserPost)
+router.post('/', errCreatePost, createPost)
+router.delete('/:postId', errPostId, deletePost)
 
-module.exports = router;
+module.exports = router

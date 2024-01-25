@@ -7,11 +7,17 @@ import { ProfileAbout } from '../../entities/profile-about'
 import { ProfileActions } from 'widgets/profile-actions'
 import { Tabbar } from 'features/tabbar'
 import './Profile.scss'
+import { usePosts } from 'shared/hooks/usePosts'
+import { useUserPosts } from 'shared/hooks/useUserPosts'
 
 const CnProfile = cn('profile')
 
 export const Profile: FC = () => {
   const { data: user } = useUser()
+  const { data: posts } = usePosts()
+  const { data: userPosts } = useUserPosts()
+  console.log('userPosts', userPosts)
+  // console.log('posts', posts)
 
   return (
     <section className={CnProfile()}>

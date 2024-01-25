@@ -10,27 +10,18 @@ interface IButtonProps
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  view?:
-    | 'default'
-    | 'auth'
-    | 'discard'
-    | 'publish'
-    | 'edit'
-    | 'onedit'
-    | 'tabbar'
-  isActive?: boolean
+  view?: 'default' | 'auth' | 'discard' | 'publish' | 'edit' | 'onedit'
 }
 
 export const Button: FC<IButtonProps> = ({
   view = 'default',
   disabled,
-  isActive,
   ...props
 }) => {
   return (
     <button
       disabled={disabled}
-      className={CnButton({ isActive, disabled, view })}
+      className={CnButton({ disabled, view })}
       {...props}
     />
   )

@@ -6,10 +6,16 @@ const {
   ValidationError,
 } = require('../utils/errors')
 
-const getPost = (req, res, next) => {
+const getUserPost = (req, res, next) => {
   const owner = req.user._id
   Post.find({ owner })
     .then((post) => res.status(200).send(post))
+    .catch(next)
+}
+
+const getPosts = (req, res, next) => {
+  Post.find({})
+    .then((post) => res.send(post))
     .catch(next)
 }
 
@@ -48,7 +54,8 @@ const deletePost = (req, res, next) => {
 }
 
 module.exports = {
-  getPost,
+  getUserPost,
   createPost,
   deletePost,
+  getPosts,
 }

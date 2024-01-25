@@ -1,55 +1,54 @@
-import { FC, PropsWithChildren, useCallback, useRef, useState } from "react";
-import { videoIcon, imgIcon } from "shared/images";
+import { FC, PropsWithChildren, useCallback, useRef, useState } from 'react'
+import { videoIcon, imgIcon } from 'shared/images'
 
-import { useClickOutside } from "shared/hooks";
+import { useClickOutside } from 'shared/hooks'
 
-import "./ContentMenu.scss";
+import './ContentMenu.scss'
 
-import { cn } from "@bem-react/classname";
+import { cn } from '@bem-react/classname'
 
-const CnContent = cn("content");
+const CnContent = cn('content')
 
 export interface IContentMenu extends PropsWithChildren {
-  onClickImg?: () => void;
-  onClickVideo?: () => void;
+  onClickImg?: () => void
+  onClickVideo?: () => void
 }
 
 export const ContentMenu: FC<IContentMenu> = ({ onClickVideo, onClickImg }) => {
-  const menu = useRef<HTMLDivElement | null>(null);
-  const checkbox = useRef<HTMLInputElement | null>(null);
-  const [isChecked, setIsChecked] = useState(false);
+  const menu = useRef<HTMLDivElement | null>(null)
+  const checkbox = useRef<HTMLInputElement | null>(null)
+  const [isChecked, setIsChecked] = useState(false)
 
-  useClickOutside({ divElement: menu, handler: () => setIsChecked(false) });
+  useClickOutside({ divElement: menu, handler: () => setIsChecked(false) })
 
   const handleOnChange = useCallback(() => {
-    setIsChecked(!isChecked);
-  }, [isChecked]);
+    setIsChecked(!isChecked)
+  }, [isChecked])
 
   const handleClick = (item: string) => {
-    item === "img" && onClickImg?.();
-    item === "video" && onClickVideo?.();
-    console.log(item);
-    setIsChecked(false);
-  };
+    item === 'img' && onClickImg?.()
+    item === 'video' && onClickVideo?.()
+    setIsChecked(false)
+  }
 
   return (
-    <div ref={menu} className={CnContent("menu")}>
+    <div ref={menu} className={CnContent('menu')}>
       <input
         type="checkbox"
-        id={CnContent("checkbox")}
-        className={CnContent("checkbox")}
+        id={CnContent('checkbox')}
+        className={CnContent('checkbox')}
         checked={isChecked}
         onChange={handleOnChange}
         ref={checkbox}
       />
       <label
-        htmlFor={CnContent("checkbox")}
-        className={CnContent("image")}
+        htmlFor={CnContent('checkbox')}
+        className={CnContent('image')}
       ></label>
 
-      <ul className={CnContent("list")}>
+      <ul className={CnContent('list')}>
         <li>
-          <button name="img" type="button" onClick={() => handleClick("img")}>
+          <button name="img" type="button" onClick={() => handleClick('img')}>
             <img src={imgIcon} alt="Add video" />
           </button>
         </li>
@@ -57,12 +56,12 @@ export const ContentMenu: FC<IContentMenu> = ({ onClickVideo, onClickImg }) => {
           <button
             name="video"
             type="button"
-            onClick={() => handleClick("video")}
+            onClick={() => handleClick('video')}
           >
             <img src={videoIcon} alt="Add video" />
           </button>
         </li>
       </ul>
     </div>
-  );
-};
+  )
+}
