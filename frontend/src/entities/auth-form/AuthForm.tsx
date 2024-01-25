@@ -1,7 +1,6 @@
 import { FC, FormEvent, FormEventHandler, PropsWithChildren } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from 'shared/ui/button'
-import { logo } from 'shared/images'
 
 import './AuthForm.scss'
 
@@ -40,7 +39,6 @@ export const AuthForm: FC<IAuthFormProps> = ({
 
   return (
     <form className={CnForm()} onSubmit={handleSubmit} noValidate>
-      <img className={CnForm('logo')} src={logo} alt="Logo" />
       <h2>{title}</h2>
       <span className={CnForm('subtitle')}>{subtitle}</span>
       <fieldset>{children}</fieldset>

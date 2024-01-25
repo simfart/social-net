@@ -5,7 +5,7 @@ import { Navbar } from 'widgets/menu'
 // import { ProfileAbout } from 'entities/profile-about'
 import { ProfileAbout } from '../../entities/profile-about'
 import { ProfileActions } from 'widgets/profile-actions'
-
+import { Tabbar } from 'features/tabbar'
 import './Profile.scss'
 
 const CnProfile = cn('profile')
@@ -24,6 +24,7 @@ export const Profile: FC = () => {
         />
         <div className={CnProfile('actions')}></div>
         <div className={CnProfile('posts-filter')}></div>
+        <Tabbar />
       </div>
     </section>
   )

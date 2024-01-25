@@ -67,6 +67,19 @@
       line-height: 24px;
       cursor: pointer;
     }
+
+    &_tabbar {
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      padding-bottom: 16px;
+
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 16px;
+    }
   }
 
   &_disabled {
@@ -76,5 +89,19 @@
     color: #000000;
     opacity: 0.6;
     pointer-events: none;
+  }
+
+  &_isActive {
+    border-bottom: 4px solid #2e8af6;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .button {
+    &_view {
+      &_tabbar {
+        padding-bottom: 12px;
+      }
+    }
   }
 }

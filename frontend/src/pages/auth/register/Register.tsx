@@ -6,41 +6,12 @@ import { useRegister } from 'shared/hooks'
 import { Loader } from 'shared/ui/loader/Loader'
 import { FC, memo, useCallback, useMemo } from 'react'
 
-const initialFormData = {
-  email: '',
-  password: '',
-  name: '',
-  avatar: '',
-  location: '',
-  about: '',
-}
-
-const placeholderFromInputName = {
-  email: 'E-Mail *',
-  password: 'Password *',
-  name: 'Name *',
-  avatar: 'Avatar URL',
-  location: 'Location',
-  about: 'About',
-}
-
-const typeFromInputName = {
-  email: 'email',
-  password: 'password',
-  name: 'text',
-  avatar: 'url',
-  location: 'text',
-  about: 'text',
-}
-
-const requireFromInputName = {
-  email: true,
-  password: true,
-  name: true,
-  avatar: false,
-  location: false,
-  about: false,
-}
+import {
+  initialFormData,
+  placeholderFromInputName,
+  requireFromInputName,
+  typeFromInputName,
+} from 'shared/ui/initialData'
 
 export const Register: FC = memo(() => {
   const { values, isValid, errors, clearForm, handleInputChange } =

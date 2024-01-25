@@ -6,7 +6,7 @@ import { ProtectedRoute } from 'shared/ui'
 import { CreatePost } from 'pages/createPost'
 
 import { Profile } from 'pages/profile'
-import { EditProfile } from 'pages/editProfile'
+import { UpdateUser } from 'pages/editProfile'
 
 export const RouterProvider: FC = () => {
   return (
@@ -17,7 +17,7 @@ export const RouterProvider: FC = () => {
       <Route path="/profile" element={<Profile />} /> {/* protected */}
       <Route path="/create-post" element={<CreatePost />} /> {/* sprotected */}
       <Route path="*" element={<PageNotFound />} />
-      <Route path="/edit-profile" element={<EditProfile />} />
+      <Route path="/edit-profile" element={<UpdateUser />} />
     </Routes>
   )
 }

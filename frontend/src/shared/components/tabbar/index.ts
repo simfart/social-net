@@ -1,0 +1,2 @@
+export { TabbarComponent } from "./TabbarComponent";
+

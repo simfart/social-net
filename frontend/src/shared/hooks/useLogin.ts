@@ -13,7 +13,7 @@ export const useLogin = () => {
 
       queryClient.invalidateQueries(["user"]);
 
-      navigate("/create-post", { replace: true });
+      navigate("/", { replace: true });
     },
     onError: (err) => {
       console.log(err);

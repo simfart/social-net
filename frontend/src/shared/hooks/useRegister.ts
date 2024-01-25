@@ -11,7 +11,7 @@ export const useRegister = () => {
     onSuccess: (data) => {
       window.localStorage.setItem("jwt", data.token);
       queryClient.invalidateQueries(["user"]);
-      navigate("/", { replace: true });
+      navigate("/profile");
     },
     onError: (err) => {
       console.log(err);

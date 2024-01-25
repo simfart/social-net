@@ -68,10 +68,8 @@ export const CreatePost: FC = () => {
       mutate(newValues)
 
       clearForm()
-
-      navigate('/profile')
     },
-    [values, mutate, clearForm, navigate],
+    [values, mutate, clearForm],
   )
 
   const onDiscard = useCallback(

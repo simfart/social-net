@@ -1,1 +1,1 @@
-export { EditProfile } from "./EditProfile";
+export { UpdateUser } from "./UpdateUser";

@@ -1,27 +1,30 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const User = require('../models/user');
-const { NODE_ENV, JWT_SECRET = 'JWT_SECRET' } = process.env;
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const User = require('../models/user')
+const { NODE_ENV, JWT_SECRET = 'JWT_SECRET' } = process.env
 
-const { NotFoundError, DuplicateKeyError, ValidationError } = require('../utils/errors');
+const {
+  NotFoundError,
+  DuplicateKeyError,
+  ValidationError,
+} = require('../utils/errors')
 
 const getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send(users))
-    .catch(next);
-};
+    .catch(next)
+}
 
 const getUsersMe = (req, res, next) => {
-  User
-    .findById(req.user._id)
+  User.findById(req.user._id)
     .then((user) => {
       if (!user) {
-        next(new NotFoundError('Нет пользователя с таким id'));
+        next(new NotFoundError('Нет пользователя с таким id'))
       }
-      res.send({ data: user });
+      res.send({ data: user })
     })
-    .catch(next);
-};
+    .catch(next)
+}
 
 const updateUsers = (req, res, next, data) => {
   // const { email, name } = req.body;
@@ -31,10 +34,9 @@ const updateUsers = (req, res, next, data) => {
   })
     .orFail(new NotFoundError('Нет пользователя с таким id'))
     .then((user) => {
-      res.send(user);
+      res.send(user)
     })
     .catch((err) => {
-
       console.log(err)
       // if (err.name === 'ValidationError') {
       //   next(new ValidationError('Переданы некорректные данные при обновлении профиля'));
@@ -43,38 +45,45 @@ const updateUsers = (req, res, next, data) => {
       // } else {
       //   next(err);
       // }
-    });
-};
+    })
+}
 const updateUser = (req, res, next) => {
-  const data = req.body;
+  const data = req.body
   User.findByIdAndUpdate(
-    req.params.id,
+    req.user._id,
     data,
     // Передадим объект опций:
     {
       new: true, // обработчик then получит на вход обновлённую запись
       runValidators: true, // данные будут валидированы перед изменением
       // upsert: true // если пользователь не найден, он будет создан
-    }
+    },
   )
-    .then(user => res.send(user))
-    .catch(err => res.status(500).send({ message: "Данные не прошли валидацию. Либо произошло что-то совсем немыслимое" }));
+    .then((user) => res.send(user))
+    .catch((err) =>
+      res.status(500).send({
+        message:
+          'Данные не прошли валидацию. Либо произошло что-то совсем немыслимое',
+      }),
+    )
 }
 
-
 const createUser = (req, res, next) => {
-  const { email, password, name, avatar, location, about } = req.body;
+  const { email, password, name, avatar, location, about } = req.body
   const userPassword = password
   const userEmail = email
-  bcrypt.hash(password, 10)
-    .then((hash) => User.create({
-      email,
-      password: hash,
-      name,
-      avatar,
-      location,
-      about
-    }))
+  bcrypt
+    .hash(password, 10)
+    .then((hash) =>
+      User.create({
+        email,
+        password: hash,
+        name,
+        avatar,
+        location,
+        about,
+      }),
+    )
     .then((user) => res.status(201))
     .then((user) => {
       const email = userEmail
@@ -83,37 +92,43 @@ const createUser = (req, res, next) => {
     })
     .then((user) => {
       res.send({
-        token: jwt.sign({ _id: user._id }, 'super-strong-secret', { expiresIn: '7d' }),
-      });
+        token: jwt.sign({ _id: user._id }, 'super-strong-secret', {
+          expiresIn: '7d',
+        }),
+      })
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new ValidationError('Переданы некорректные данные при создании пользователя'));
+        next(
+          new ValidationError(
+            'Переданы некорректные данные при создании пользователя',
+          ),
+        )
       } else if (err.code === 11000) {
-        next(new DuplicateKeyError());
+        next(new DuplicateKeyError())
       } else {
         console.log(err)
-        next(err);
+        next(err)
       }
-    });
-};
-
+    })
+}
 
 const login = (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body
   return User.findUserByCredentials(email, password)
     .then((user) => {
       res.send({
-        token: jwt.sign({ _id: user._id }, 'super-strong-secret', { expiresIn: '7d' }),
-      });
+        token: jwt.sign({ _id: user._id }, 'super-strong-secret', {
+          expiresIn: '7d',
+        }),
+      })
     })
-    .catch(next);
-};
-
+    .catch(next)
+}
 
 const logout = (req, res) => {
-  res.send({ message: 'Выход' });
-};
+  res.send({ message: 'Выход' })
+}
 
 module.exports = {
   createUser,
@@ -121,5 +136,5 @@ module.exports = {
   updateUser,
   login,
   logout,
-  getUsers
-};
+  getUsers,
+}
