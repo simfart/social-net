@@ -6,7 +6,7 @@ import { ProtectedRoute } from 'shared/ui'
 import { CreatePost } from 'pages/createPost'
 
 import { Profile } from 'pages/profile'
-import { UpdateUser } from 'pages/editProfile'
+import { UpdateUser } from 'pages/updateUser'
 
 export const RouterProvider: FC = () => {
   return (

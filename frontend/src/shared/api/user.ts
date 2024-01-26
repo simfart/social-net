@@ -17,6 +17,8 @@ export const logout = async () => {
     .catch((err) => err);
 };
 
+
+
 export const getUser = async () => {
   return await api.get(`/users/me`).then((res) => res.data);
 };
@@ -26,4 +28,7 @@ export const updateUser = async(payload:{[k:string]:string}) =>{
   return await api.patch(`/users/me`, payload).then((res)=>res.data)
 }
 
+export const getUsers = async () => {
+  return await api.get(`/users`).then((res) => res.data);
+};
 

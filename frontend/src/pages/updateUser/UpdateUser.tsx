@@ -10,7 +10,7 @@ import {
 import { useForm } from 'shared/hooks'
 import { useUser } from 'shared/hooks/useUser'
 import { Input } from 'shared/ui'
-import { AuthForm } from '../../entities/auth-form/AuthForm'
+import { AuthForm } from '../../entities/auth-form'
 
 import { AuthContainer } from 'shared/auth-container'
 import {
@@ -97,7 +97,7 @@ export const UpdateUser: FC = () => {
           children={formContent}
           handleSubmit={onSubmit}
           handleDiscard={onDiscard}
-          isInvalid={isValid}
+          isInvalid={!isValid}
           title="Edit your profile"
           subtitle=""
           linkSpan="./"

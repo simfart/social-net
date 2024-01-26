@@ -10,7 +10,7 @@ import { Input } from 'shared/ui'
 import { useNewPost } from 'shared/hooks'
 import { Loader } from 'shared/ui/loader/Loader'
 import { AuthContainer } from '../../shared/auth-container/AuthContainer'
-import { AuthForm } from '../../entities/auth-form/AuthForm'
+import { AuthForm } from '../../features/auth-form/AuthForm'
 
 import './CreatePost.scss'
 

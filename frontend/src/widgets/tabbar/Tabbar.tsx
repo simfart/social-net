@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
 import { TabbarComponent } from './tabbar-component'
+import { Posts } from 'widgets/Posts'
 
 import './Tabbar.scss'
 
@@ -13,9 +14,9 @@ interface Tab {
 }
 
 const tabs: Tab[] = [
-  { name: 'Posts', component: <div>ииии</div> },
+  { name: 'Posts', component: <Posts /> },
   { name: 'Liked', component: <div>ппп</div> },
-  { name: 'Tagged', component: <div>иипппии</div> },
+  { name: 'Subscribed', component: <div>иипппии</div> },
 ]
 export const Tabbar: FC = () => {
   const [selectedTab, setSelectedTab] = useState<Tab>(tabs[0])

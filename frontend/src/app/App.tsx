@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { RouterProvider } from "./providers";
-import { QueryClientProvider } from "./providers/QueryClientProvider";
-import { BrowserRouter } from "react-router-dom";
+import { FC } from 'react'
+import { RouterProvider } from './providers'
+import { QueryClientProvider } from './providers/QueryClientProvider'
+import { BrowserRouter } from 'react-router-dom'
 
-import "./App.scss";
+import './App.scss'
 
 export const App: FC = () => {
   return (
@@ -14,5 +14,5 @@ export const App: FC = () => {
         </QueryClientProvider>
       </BrowserRouter>
     </div>
-  );
-};
+  )
+}

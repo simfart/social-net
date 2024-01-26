@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { EditButton } from 'features/edit-button'
+import { EditButton } from '../../entities/edit-button'
 import { cn } from '@bem-react/classname'
 
 import './ProfileActions.scss'

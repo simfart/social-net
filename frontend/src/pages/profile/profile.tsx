@@ -1,23 +1,19 @@
 import { cn } from '@bem-react/classname'
 import { FC } from 'react'
 import { useUser } from 'shared/hooks/useUser'
-import { Navbar } from 'widgets/menu'
+import { Navbar } from 'widgets/navbar'
 // import { ProfileAbout } from 'entities/profile-about'
-import { ProfileAbout } from '../../entities/profile-about'
+import { ProfileAbout } from '../../widgets/profile-about'
 import { ProfileActions } from 'widgets/profile-actions'
-import { Tabbar } from 'features/tabbar'
+import { Tabbar } from 'widgets/tabbar'
 import './Profile.scss'
 import { usePosts } from 'shared/hooks/usePosts'
-import { useUserPosts } from 'shared/hooks/useUserPosts'
 
 const CnProfile = cn('profile')
 
 export const Profile: FC = () => {
   const { data: user } = useUser()
   const { data: posts } = usePosts()
-  const { data: userPosts } = useUserPosts()
-  console.log('userPosts', userPosts)
-  // console.log('posts', posts)
 
   return (
     <section className={CnProfile()}>
