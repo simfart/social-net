@@ -1,6 +1,10 @@
 .postForm {
+  padding: 25px 0 16px;
+  border-bottom: 2px solid #323436;
+
   &-profile {
     display: flex;
+
     img {
       width: 48px;
       height: 48px;
@@ -35,13 +39,50 @@
   }
 
   &-content {
+    padding-left: 60px;
+    margin: 17px 0;
+
     p {
+      overflow: hidden;
+      width: 100%;
+      line-height: 24px;
+      max-height: calc(3 * 24px); /* define 3 lines*/
+      position: relative;
       color: #ecebed;
       font-size: 16px;
-      line-height: 24px;
-      margin: 17px 0;
     }
+    a {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: inherit;
+      outline: none;
+      padding-left: 18px;
+      background-color: #181a1c;
+      color: #f62e8e;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      cursor: pointer;
+    }
+    a:before {
+      content: '...';
+      position: absolute;
+      left: 0;
+      text-decoration: none;
+      color: #f62e8e;
+    }
+
+    p:focus-within {
+      max-height: 100%;
+    }
+
+    p:focus-within a {
+      font-size: 0;
+    }
+
     img {
+      max-height: 507px;
       width: 100%;
       object-fit: cover;
       border-radius: 16px;
@@ -50,15 +91,23 @@
 
   &-actions {
     display: flex;
+    padding-left: 50px;
     img {
-      width: 16px;
-      height: 16px;
+      width: 19px;
+      height: 19px;
+      cursor: pointer;
+      margin-right: 11px;
+    }
+    p {
+      margin: 0;
     }
   }
 }
 
 @media screen and (max-width: 600px) {
   .postForm {
+    padding: 25px 24px 18px;
+
     &-profile {
       img {
         width: 32px;
@@ -66,8 +115,22 @@
         margin-right: 8px;
       }
     }
+
     &-container {
       padding: 0;
+    }
+
+    &-content {
+      padding: 0;
+    }
+
+    &-actions {
+      padding: 0;
+      img {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+      }
     }
   }
 }

@@ -67,6 +67,18 @@
       line-height: 24px;
       cursor: pointer;
     }
+    &_post {
+      display: flex;
+      align-items: center;
+      background: transparent;
+      border: 0;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+      padding: 0;
+      margin-right: 36px;
+    }
   }
 
   &_disabled {
@@ -84,6 +96,10 @@
     &_view {
       &_tabbar {
         padding-bottom: 12px;
+      }
+
+      &_post {
+        margin-right: 20px;
       }
     }
   }

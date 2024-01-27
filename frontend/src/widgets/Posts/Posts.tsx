@@ -11,18 +11,19 @@ const CnPosts = cn('posts')
 export const Posts: FC = () => {
   const { data: user } = useUser()
   const { data: userPosts } = useUserPosts()
-  console.log(userPosts)
 
   const NavItems = useMemo(() => {
     return (
       userPosts &&
-      userPosts.map((item: Record<string, string>, index: number) => {
-        return (
-          <li key={index}>
-            <PostForm owner={user?.data} timeAgo="1d ago" post={item} />
-          </li>
-        )
-      })
+      userPosts
+        .map((item: Record<string, string>, index: number) => {
+          return (
+            <li key={index}>
+              <PostForm owner={user?.data} post={item} />
+            </li>
+          )
+        })
+        .reverse()
     )
   }, [user?.data, userPosts])
 
