@@ -10,7 +10,9 @@ interface IAuthStore {
 export const useAuthStore = create<IAuthStore>()(
   devtools(
     immer((set) => ({
+      
       isLoggedIn: !!window.localStorage.getItem('jwt'),
+    
       setIsLoggedIn: (payload) =>
         set((state) => {
           state.isLoggedIn = payload

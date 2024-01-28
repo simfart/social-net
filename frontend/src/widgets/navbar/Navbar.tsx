@@ -30,7 +30,7 @@ const navData = [
   {
     name: 'Profile',
     icon: profileLogo,
-    path: '/',
+    path: '/profile',
   },
 ]
 

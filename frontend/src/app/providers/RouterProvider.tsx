@@ -7,11 +7,12 @@ import { CreatePost } from 'pages/createPost'
 
 import { Profile } from 'pages/profile'
 import { UpdateUser } from 'pages/updateUser'
+import { Home } from 'pages/home'
 
 export const RouterProvider: FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<ProtectedRoute element={<Profile />} />} />
+      <Route path="/" element={<ProtectedRoute element={<Home />} />} />
       <Route path="/signup" element={<Register />} />
       <Route path="/signin" element={<Login />} />
       <Route path="/profile" element={<Profile />} /> {/* protected */}

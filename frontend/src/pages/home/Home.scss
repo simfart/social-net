@@ -1,17 +1,27 @@
-.profile {
+.home {
   display: grid;
   grid-template-columns: auto 1fr;
+
+  h1 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+  ul,
+  li {
+    text-decoration: none;
+    list-style: none;
+  }
+
   &-content {
     padding: 30px;
   }
 }
 
 @media screen and (max-width: 800px) {
-  .profile {
+  .home {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr auto;
-    &-content {
-      padding: 0;
-    }
   }
 }

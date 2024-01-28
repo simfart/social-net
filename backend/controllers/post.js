@@ -15,6 +15,7 @@ const getUserPost = (req, res, next) => {
 
 const getPosts = (req, res, next) => {
   Post.find({})
+    .populate('owner')
     .then((post) => res.send(post))
     .catch(next)
 }

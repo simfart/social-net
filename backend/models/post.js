@@ -50,3 +50,26 @@ const postSchema = new mongoose.Schema(
 )
 
 module.exports = mongoose.model('Post', postSchema)
+
+// {
+//     "likes": [
+//         {
+//             "name": "Beautiful",
+//             "about": "Life",
+//             "avatar": "https://i.yapx.cc/MvQ5k.gif",
+//             "_id": "0835d3929689eb084ba8ae41",
+//             "cohort": "cohort-59"
+//         }
+//     ],
+//     "_id": "65b65e39c5ce7667093440d8",
+//     "name": "Panda",
+//     "link": "https://avatars.mds.yandex.net/i?id=2cf63655942cc9c1f00c2e72fd60d7755daaf03b-10471613-images-thumbs&n=13",
+//     "owner": {
+//         "name": "Beautiful",
+//         "about": "Life",
+//         "avatar": "https://i.yapx.cc/MvQ5k.gif",
+//         "_id": "0835d3929689eb084ba8ae41",
+//         "cohort": "cohort-59"
+//     },
+//     "createdAt": "2024-01-28T14:01:29.257Z"
+// },

@@ -12,7 +12,9 @@ export const Posts: FC = () => {
   const { data: user } = useUser()
   const { data: userPosts } = useUserPosts()
 
-  const NavItems = useMemo(() => {
+  console.log(user.data)
+
+  const PostsItems = useMemo(() => {
     return (
       userPosts &&
       userPosts
@@ -27,5 +29,5 @@ export const Posts: FC = () => {
     )
   }, [user?.data, userPosts])
 
-  return <ul className={CnPosts()}>{NavItems}</ul>
+  return <ul className={CnPosts()}>{PostsItems}</ul>
 }
