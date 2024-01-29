@@ -50,6 +50,22 @@ export const PostForm: FC<IPostForm> = ({
             </p>
           )}
           {post.image && <img src={post.image} alt="Post Picture" />}
+          {post.video && (
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/XVgCLQ_JQfU"
+              title="YouTube video player"
+              srcDoc="<style>*{padding:0;margin:0;overflow:hidden}
+    img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}
+    span{height:1.5em;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.5em black}
+    </style>
+    <a href=https://www.youtube.com/embed/XVgCLQ_JQfU?autoplay=1>
+    <img src=https://img.youtube.com/vi/XVgCLQ_JQfU/hqdefault.jpg alt='Img'>
+    <span>▶</span>
+    </a>"
+            ></iframe>
+          )}
         </div>
         <div className={CnPost('actions')}>
           <Button onClick={onLikeClick} view="post">

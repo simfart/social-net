@@ -9,5 +9,5 @@ export type ProtectedRouteProps = {
 export const ProtectedRoute: FC<ProtectedRouteProps> = ({ element }) => {
   const { isLoggedIn } = useAuthStore()
 
-  return isLoggedIn ? element : <Navigate replace={true} to="/signin/" />
+  return isLoggedIn ? element : <Navigate to="/signin" />
 }
