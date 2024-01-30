@@ -1,6 +1,5 @@
 import { FC, PropsWithChildren, useCallback, useRef, useState } from 'react'
 import { videoIcon, imgIcon } from 'shared/images'
-
 import { useClickOutside } from 'shared/hooks'
 
 import './ContentMenu.scss'

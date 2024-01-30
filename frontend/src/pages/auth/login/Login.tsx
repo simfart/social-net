@@ -1,4 +1,4 @@
-import { AuthForm } from '../../../entities/auth-form'
+import { AuthForm } from 'entities/auth-form'
 import { AuthContainer } from 'shared/auth-container'
 import { useForm } from 'shared/hooks'
 import { Input } from 'shared/ui'
@@ -69,11 +69,11 @@ export const Login: FC = memo(() => {
         <AuthForm
           handleSubmit={onSubmit}
           title="Login"
-          subtitle="Glad you’re back.!"
+          subtitle="Glad you’re back!"
           linkSpan="/signup"
           textButton="Login"
           textLinkSpan="Signup"
-          textSpan="Don’t have an account ? "
+          textSpan="Don’t have an account ?"
           isInvalid={!isValid}
           children={formContent}
           page="auth"

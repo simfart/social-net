@@ -11,7 +11,7 @@ import {
   placeholderFromInputName,
   requireFromInputName,
   typeFromInputName,
-} from 'shared/ui/initialData'
+} from 'shared/constants'
 
 export const Register: FC = memo(() => {
   const { values, isValid, errors, clearForm, handleInputChange } =
@@ -64,11 +64,11 @@ export const Register: FC = memo(() => {
       children={
         <AuthForm
           title="Signup"
-          subtitle="Just some details to get you in.!"
+          subtitle="Just some details to get you in!"
           textButton="Signup"
           linkSpan="/signin"
           textLinkSpan="Login"
-          textSpan="Already Registered? "
+          textSpan="Already Registered?"
           handleSubmit={onSubmit}
           isInvalid={!isValid}
           children={formContent}

@@ -16,10 +16,9 @@ interface IAuthFormProps extends PropsWithChildren {
   linkSpan: string
   textLinkSpan: string
   isInvalid: boolean
+  page?: 'default' | 'auth' | 'discard' | 'publish' | 'edit'
   handleSubmit: FormEventHandler<HTMLFormElement>
   handleDiscard?: (e: FormEvent<HTMLButtonElement>) => void
-
-  page?: 'default' | 'auth' | 'discard' | 'publish' | 'edit'
 }
 
 export const AuthForm: FC<IAuthFormProps> = ({
@@ -30,9 +29,9 @@ export const AuthForm: FC<IAuthFormProps> = ({
   textSpan,
   linkSpan,
   textLinkSpan,
-  handleSubmit,
   isInvalid,
   page,
+  handleSubmit,
   handleDiscard,
 }) => {
   const location = useLocation()

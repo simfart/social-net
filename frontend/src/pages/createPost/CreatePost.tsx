@@ -9,8 +9,6 @@ import { Button } from 'shared/ui/button'
 import { Input } from 'shared/ui'
 import { useNewPost } from 'shared/hooks'
 import { Loader } from 'shared/ui/loader/Loader'
-import { AuthContainer } from '../../shared/auth-container/AuthContainer'
-import { AuthForm } from '../../features/auth-form/AuthForm'
 
 import './CreatePost.scss'
 
@@ -64,7 +62,7 @@ export const CreatePost: FC = () => {
       const valuesArr = Object.entries(values)
       const filteredArr = valuesArr.filter(([_, value]) => value !== '')
       const newValues = Object.fromEntries(filteredArr)
-      console.log(newValues)
+
       mutate(newValues)
 
       clearForm()
@@ -98,8 +96,9 @@ export const CreatePost: FC = () => {
           </Button>
         </div>
         <div className={CnCreatePost('formInput')}>
-          <img src={currentUser?.data.avatar} alt="" />
+          <img src={currentUser?.avatar} alt="" />
           <Input
+            inputElement="textarea"
             name="description"
             type="text"
             isInvalid={!!errors.description}

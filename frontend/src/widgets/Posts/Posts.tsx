@@ -5,6 +5,7 @@ import { useUser } from 'shared/hooks/useUser'
 
 import './Posts.scss'
 import { cn } from '@bem-react/classname'
+import { Post } from 'shared/types'
 
 const CnPosts = cn('posts')
 
@@ -12,22 +13,19 @@ export const Posts: FC = () => {
   const { data: user } = useUser()
   const { data: userPosts } = useUserPosts()
 
-  console.log(user.data)
+  const postsItems = useMemo(() => {
+    if (!userPosts || !user) return null
 
-  const PostsItems = useMemo(() => {
-    return (
-      userPosts &&
-      userPosts
-        .map((item: Record<string, string>, index: number) => {
-          return (
-            <li key={index}>
-              <PostForm owner={user?.data} post={item} />
-            </li>
-          )
-        })
-        .reverse()
-    )
-  }, [user?.data, userPosts])
+    return userPosts
+      .map((item: Post, index: number) => {
+        return (
+          <li key={index}>
+            <PostForm owner={user} post={item} />
+          </li>
+        )
+      })
+      .reverse()
+  }, [user, userPosts])
 
-  return <ul className={CnPosts()}>{PostsItems}</ul>
+  return <ul className={CnPosts()}>{postsItems}</ul>
 }

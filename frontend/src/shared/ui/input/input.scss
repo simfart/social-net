@@ -1,5 +1,5 @@
 .input {
-  &-item {
+  &-container {
     width: 100%;
   }
 
@@ -10,57 +10,72 @@
     padding: 0 0 10px 0;
   }
 
-  &-auth {
-    width: 276px;
-    background: rgba(0, 0, 0, 0);
-    padding: 14px 16px;
-    border-radius: 12px;
-    border: 1px solid #fff;
-    color: #fff;
-    margin-top: 10px;
-    &_invalid {
-      border: 1px solid #cd407b;
+  &_size {
+    &_m {
+
     }
   }
 
-  &-post {
-    background: rgba(0, 0, 0, 0);
-    border: 0;
-    color: #ffffff;
-    font-size: 20px;
-    line-height: 150%;
-    width: 100%;
-    min-height: 48px;
+  &_view {
+    &_auth {
+      width: 276px;
+      background: rgba(0, 0, 0, 0);
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid #fff;
+      color: #fff;
+      margin-top: 10px;
 
-    &_invalid {
-      border-bottom: 1px solid #cd407b;
+      &_invalid {
+        border: 1px solid #cd407b;
+      }
+
+      &:active,
+      &:hover,
+      &:focus {
+        outline: 0;
+        outline-offset: 0;
+      }
     }
-  }
-  @media screen and (max-width: 600px) {
+
     &_post {
-      font-size: 16px;
+      width: 100%;
+      background: rgba(0, 0, 0, 0);
+      border: 0;
+      color: #ffffff;
+      font-size: 20px;
+      line-height: 150%;
+      min-height: 48px;
+
+      @media screen and (max-width: 600px) {
+        font-size: 16px;
+      }
+
+      &:active,
+      &:hover,
+      &:focus {
+        outline: 0;
+        outline-offset: 0;
+      }
+
+      &_invalid {
+        border-bottom: 1px solid #cd407b;
+      }
+    }
+
+    &_edit {
+      width: 100%;
+      background: rgb(0 0 0 / 14%);
+      padding: 14px 16px;
+      // border-radius: 12px;
+      border: none;
+      border-bottom: 1px solid rgb(255 255 255 / 14%);
+      color: #fff;
+      margin-top: 10px;
+
+      &_invalid {
+        border-bottom: 1px solid #cd407b;
+      }
     }
   }
-
-  &-edit {
-    width: 100%;
-    background: rgb(0 0 0 / 14%);
-    padding: 14px 16px;
-    // border-radius: 12px;
-    border: none;
-    border-bottom: 1px solid rgb(255 255 255 / 14%);
-    color: #fff;
-    margin-top: 10px;
-
-    &_invalid {
-      border-bottom: 1px solid #cd407b;
-    }
-  }
-}
-
-.input_view_auth .input_view_post:active,
-:hover,
-:focus {
-  outline: 0;
-  outline-offset: 0;
 }

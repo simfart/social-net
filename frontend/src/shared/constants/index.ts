@@ -1,1 +1,2 @@
-export { apiUrl } from "./api";
+export { apiUrl } from './api'
+export * from './initialData'

@@ -18,39 +18,53 @@ import {
   placeholderFromInputName,
   requireFromInputName,
   typeFromInputName,
-} from 'shared/ui/initialData'
-
-import './UpdateUser.scss'
+} from 'shared/constants'
 import { useNavigate } from 'react-router-dom'
 import { useUpdate } from 'shared/hooks/useUpdate'
 import { Loader } from 'shared/ui/loader/Loader'
+
+import './UpdateUser.scss'
+
+interface UserEditForm {
+  name: string
+  location: string
+  avatar: string
+  about: string
+}
 
 export const UpdateUser: FC = () => {
   const navigate = useNavigate()
 
   const { data: currentUser } = useUser()
-
   const { values, isValid, errors, clearForm, handleInputChange, setValues } =
-    useForm(initialFormData)
-
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     setValues(currentUser.data)
-  //   }
-  // }, [currentUser, setValues])
-
+    useForm({
+      name: currentUser?.name,
+      location: currentUser?.location,
+      avatar: currentUser?.avatar,
+      about: currentUser?.about,
+    } as UserEditForm)
   const { mutate, isLoading } = useUpdate()
 
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
 
-      const valuesArr = Object.entries(values)
-      const filteredArr = valuesArr.filter(([_, value]) => value !== '')
-      const newValues = Object.fromEntries(filteredArr)
-      mutate(newValues)
+      const payload = {} as { [k: string]: string }
+
+      if (currentUser) {
+        for (const key in values) {
+          const value = values[key as keyof typeof values]
+          const oldValue = currentUser[key as keyof typeof values]
+
+          if (value !== oldValue) {
+            payload[key as keyof typeof values] = value
+          }
+        }
+      }
+
+      mutate(payload)
     },
-    [mutate, values],
+    [mutate, values, currentUser],
   )
 
   const onDiscard = useCallback(
@@ -61,12 +75,9 @@ export const UpdateUser: FC = () => {
     },
     [clearForm, navigate],
   )
-  const { password, email: _, ...newFormData } = initialFormData
-
   const formContent = useMemo(() => {
-    const valueKeys = Object.keys(newFormData) as Array<
-      keyof typeof newFormData
-    >
+    const valueKeys = Object.keys(values) as Array<keyof typeof values>
+
     return valueKeys.map((formKey) => {
       return (
         <Input
@@ -74,7 +85,7 @@ export const UpdateUser: FC = () => {
           name={formKey}
           type={typeFromInputName[formKey]}
           isInvalid={!!errors[formKey]}
-          placeholder={currentUser?.data[formKey]}
+          placeholder={currentUser?.[formKey]}
           required={requireFromInputName[formKey]}
           value={values[formKey]}
           onChange={handleInputChange}
@@ -85,9 +96,9 @@ export const UpdateUser: FC = () => {
         />
       )
     })
-  }, [newFormData, errors, currentUser?.data, values, handleInputChange])
+  }, [errors, currentUser, values, handleInputChange])
 
-  isLoading && <Loader />
+  if (isLoading) return <Loader />
 
   return (
     <AuthContainer

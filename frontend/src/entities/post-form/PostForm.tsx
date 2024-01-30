@@ -3,25 +3,26 @@ import { Button } from 'shared/ui/button'
 import { likeIcon, commentIconn } from 'shared/images'
 import { useShotenElement } from 'shared/hooks'
 import { useTimeAgo } from 'shared/hooks'
-
-import './PostForm.scss'
 import { cn } from '@bem-react/classname'
 import { YoutubeFrame } from 'entities/youtube-frame'
+import { Post, User } from 'shared/types'
+
+import './PostForm.scss'
 
 interface IPostForm extends PropsWithChildren {
-  owner: Record<string, string>
+  owner: User
+  post: Post
   onCommentClick?: () => void
   onLikeClick?: () => void
-  post: Record<string, string>
 }
 
-const CnPost = cn('postForm')
+const CnPostForm = cn('postForm')
 
 export const PostForm: FC<IPostForm> = ({
   owner,
+  post,
   onLikeClick,
   onCommentClick,
-  post,
 }) => {
   const ref = useRef(null)
   const { isShorten } = useShotenElement({ ref })
@@ -29,15 +30,15 @@ export const PostForm: FC<IPostForm> = ({
 
   return (
     post && (
-      <div className={CnPost()}>
-        <div className={CnPost('profile')}>
+      <div className={CnPostForm()}>
+        <div className={CnPostForm('profile')}>
           <img src={owner?.avatar} alt="Owner avatar" />
-          <div className={CnPost('container')}>
+          <div className={CnPostForm('container')}>
             <h3>{owner?.name}</h3>
             <p>{createdAt}</p>
           </div>
         </div>
-        <div className={CnPost('content')}>
+        <div className={CnPostForm('content')}>
           {post.description && (
             <p ref={ref}>
               <span>{post.description}</span>
@@ -51,7 +52,7 @@ export const PostForm: FC<IPostForm> = ({
           {post.image && <img src={post.image} alt="Post Picture" />}
           {post.video && <YoutubeFrame videoURL={post.video} />}
         </div>
-        <div className={CnPost('actions')}>
+        <div className={CnPostForm('actions')}>
           <Button onClick={onLikeClick} view="post">
             <img src={likeIcon} alt="Like Icon" />
             <p>{post.likes.length}</p>

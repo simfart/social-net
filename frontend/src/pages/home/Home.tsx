@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cn } from '@bem-react/classname'
 import { FC, useEffect, useMemo, useState } from 'react'
 import { useUser } from 'shared/hooks/useUser'
 import { Navbar } from 'widgets/navbar'
-
-import './Home.scss'
 import { usePosts } from 'shared/hooks/usePosts'
 import { PostForm } from 'entities/post-form'
+import { Post } from 'shared/types'
+
+import './Home.scss'
 
 const CnHome = cn('home')
 
@@ -31,20 +33,18 @@ export const Home: FC = () => {
   }, [greetingText, hour])
 
   const PostsItems = useMemo(() => {
-    return (
-      allPosts &&
-      allPosts
-        .map((item: Record<string, string>, index: number) => {
-          return (
-            <li key={index}>
-              {/* owner={item.owner} */}
-              <PostForm owner={currentUser.data} post={item} />
-            </li>
-          )
-        })
-        .reverse()
-    )
-  }, [allPosts, currentUser])
+    if (!allPosts) return null
+
+    return allPosts
+      .map((item: Post) => {
+        return (
+          <li key={item._id}>
+            <PostForm owner={item.owner} post={item} />
+          </li>
+        )
+      })
+      .reverse()
+  }, [allPosts])
 
   return (
     <section className={CnHome()}>
@@ -52,7 +52,7 @@ export const Home: FC = () => {
       <div className={CnHome('content')}>
         <h1>
           {greetingText}
-          {currentUser?.data.name}
+          {currentUser?.name}
         </h1>
         <ul className={CnHome('items')}>{PostsItems}</ul>
       </div>

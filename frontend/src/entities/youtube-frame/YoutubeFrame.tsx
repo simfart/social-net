@@ -18,7 +18,7 @@ export const YoutubeFrame: FC<IVideo> = ({ videoURL }) => {
     <iframe
       width="560"
       height="315"
-      src={`https://www.youtube.com/embed/ ${getId(videoURL)}`}
+      src={`https://www.youtube.com/embed/${getId(videoURL)}`}
       title="YouTube video player"
       srcDoc={`<style>*{padding:0;margin:0;overflow:hidden}
     img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}
