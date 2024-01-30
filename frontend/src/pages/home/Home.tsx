@@ -6,7 +6,6 @@ import { Navbar } from 'widgets/navbar'
 import './Home.scss'
 import { usePosts } from 'shared/hooks/usePosts'
 import { PostForm } from 'entities/post-form'
-import { YoutubeFrame } from 'entities/youtube-frame'
 
 const CnHome = cn('home')
 
@@ -51,7 +50,6 @@ export const Home: FC = () => {
     <section className={CnHome()}>
       <Navbar />
       <div className={CnHome('content')}>
-        <YoutubeFrame />
         <h1>
           {greetingText}
           {currentUser?.data.name}
