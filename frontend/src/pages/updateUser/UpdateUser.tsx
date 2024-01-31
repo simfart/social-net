@@ -1,24 +1,10 @@
-import {
-  FC,
-  FormEvent,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { FC, FormEvent, useCallback, useMemo } from 'react'
 import { useForm } from 'shared/hooks'
 import { useUser } from 'shared/hooks/useUser'
 import { Input } from 'shared/ui'
-import { AuthForm } from '../../entities/auth-form'
-
-import { AuthContainer } from 'shared/auth-container'
-import {
-  initialFormData,
-  placeholderFromInputName,
-  requireFromInputName,
-  typeFromInputName,
-} from 'shared/constants'
+import { AuthForm } from 'entities/auth-form'
+import { AuthContainer } from 'shared/ui/auth-container'
+import { requireFromInputName, typeFromInputName } from 'shared/ui'
 import { useNavigate } from 'react-router-dom'
 import { useUpdate } from 'shared/hooks/useUpdate'
 import { Loader } from 'shared/ui/loader/Loader'
@@ -36,13 +22,12 @@ export const UpdateUser: FC = () => {
   const navigate = useNavigate()
 
   const { data: currentUser } = useUser()
-  const { values, isValid, errors, clearForm, handleInputChange, setValues } =
-    useForm({
-      name: currentUser?.name,
-      location: currentUser?.location,
-      avatar: currentUser?.avatar,
-      about: currentUser?.about,
-    } as UserEditForm)
+  const { values, isValid, errors, clearForm, handleInputChange } = useForm({
+    name: currentUser?.name,
+    location: currentUser?.location,
+    avatar: currentUser?.avatar,
+    about: currentUser?.about,
+  } as UserEditForm)
   const { mutate, isLoading } = useUpdate()
 
   const onSubmit = useCallback(

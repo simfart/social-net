@@ -1,6 +1,6 @@
-import { FC, PropsWithChildren, useRef } from 'react'
+import { FC, PropsWithChildren, useCallback, useRef } from 'react'
 import { Button } from 'shared/ui/button'
-import { likeIcon, commentIconn } from 'shared/images'
+import { likeIcon, commentIconn, dotsIcon } from 'shared/images'
 import { useShotenElement } from 'shared/hooks'
 import { useTimeAgo } from 'shared/hooks'
 import { cn } from '@bem-react/classname'
@@ -8,6 +8,9 @@ import { YoutubeFrame } from 'entities/youtube-frame'
 import { Post, User } from 'shared/types'
 
 import './PostForm.scss'
+import { useUser } from 'shared/hooks/useUser'
+import { useDeletePost } from 'shared/hooks/useDeletePost'
+import { Loader } from 'shared/ui/loader/Loader'
 
 interface IPostForm extends PropsWithChildren {
   owner: User
@@ -27,16 +30,37 @@ export const PostForm: FC<IPostForm> = ({
   const ref = useRef(null)
   const { isShorten } = useShotenElement({ ref })
   const createdAt = useTimeAgo(post.createdAt)
+  const { data: currentUser } = useUser()
+
+  const { mutate, isLoading } = useDeletePost()
+
+  const onDeleteClick = useCallback(() => {
+    mutate(post._id)
+  }, [mutate, post._id])
+
+  if (isLoading) return <Loader />
 
   return (
     post && (
       <div className={CnPostForm()}>
-        <div className={CnPostForm('profile')}>
-          <img src={owner?.avatar} alt="Owner avatar" />
-          <div className={CnPostForm('container')}>
-            <h3>{owner?.name}</h3>
-            <p>{createdAt}</p>
+        <div className={CnPostForm('header')}>
+          <div className={CnPostForm('profile')}>
+            <img src={owner?.avatar} alt="Owner avatar" />
+            <div className={CnPostForm('container')}>
+              <h3>{owner?.name}</h3>
+              <p>{createdAt}</p>
+            </div>
           </div>
+          {owner._id === currentUser?._id && (
+            <div className="dropdown">
+              <img src={dotsIcon} alt="" />
+              <div className="dropdown-content">
+                <Button view="edit" onClick={onDeleteClick}>
+                  Delete
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
         <div className={CnPostForm('content')}>
           {post.description && (

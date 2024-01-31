@@ -1,5 +1,5 @@
 import { AuthForm } from 'entities/auth-form'
-import { AuthContainer } from 'shared/auth-container'
+import { AuthContainer } from 'shared/ui/auth-container'
 import { useForm } from 'shared/hooks'
 import { Input } from 'shared/ui'
 import { Loader } from 'shared/ui/loader/Loader'

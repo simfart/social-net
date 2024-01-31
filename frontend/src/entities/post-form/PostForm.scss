@@ -2,6 +2,12 @@
   padding: 25px 0 16px;
   border-bottom: 2px solid #323436;
 
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &-profile {
     display: flex;
 
@@ -106,7 +112,7 @@
 
 @media screen and (max-width: 600px) {
   .postForm {
-    padding: 25px 24px 18px;
+    padding: 25px 0 18px;
 
     &-profile {
       img {
@@ -133,4 +139,34 @@
       }
     }
   }
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+
+  &:hover {
+    width: 80px;
+  }
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 100%;
+  overflow: auto;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+  top: -24px;
+}
+.dropdown-content button {
+  display: block;
+  color: #000000;
+  padding: 5px;
+  text-decoration: none;
+}
+.dropdown-content button:hover {
+  color: #ffffff;
+  background-color: #00a4bd;
 }

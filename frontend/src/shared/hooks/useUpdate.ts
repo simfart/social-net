@@ -8,7 +8,7 @@ export const useUpdate = () => {
   const queryClient = useQueryClient()
 
   const { mutate, isLoading } = useMutation(updateUser, {
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries(['user'])
       navigate('/profile')
     },

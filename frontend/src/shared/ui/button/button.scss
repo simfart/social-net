@@ -78,6 +78,10 @@
       line-height: 16px;
       padding: 0;
       margin-right: 36px;
+
+      &:last-of-type {
+        margin: 0;
+      }
     }
   }
 

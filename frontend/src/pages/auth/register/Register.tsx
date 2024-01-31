@@ -1,17 +1,16 @@
-import { AuthForm } from '../../../entities/auth-form'
+import { AuthForm } from 'entities/auth-form'
 import { useForm } from 'shared/hooks'
 import { Input } from 'shared/ui'
-import { AuthContainer } from 'shared/auth-container'
+import { AuthContainer } from 'shared/ui/auth-container'
 import { useRegister } from 'shared/hooks'
 import { Loader } from 'shared/ui/loader/Loader'
 import { FC, memo, useCallback, useMemo } from 'react'
-
 import {
   initialFormData,
   placeholderFromInputName,
   requireFromInputName,
   typeFromInputName,
-} from 'shared/constants'
+} from 'shared/ui'
 
 export const Register: FC = memo(() => {
   const { values, isValid, errors, clearForm, handleInputChange } =

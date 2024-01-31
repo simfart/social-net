@@ -20,7 +20,7 @@ export const Profile: FC = () => {
     <section className={CnProfile()}>
       <Navbar />
       <div className={CnProfile('content')}>
-        <ProfileAbout data={user} />
+        <ProfileAbout user={user} />
         <ProfileActions
           followers={user?.followers?.length ?? 0}
           followings={user?.followings?.length ?? 0}
