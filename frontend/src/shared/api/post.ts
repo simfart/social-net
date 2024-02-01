@@ -16,4 +16,3 @@ export const deletePost = async (payload:string) => {
   return await api.delete(`/posts/${payload}`).then((res) => res.data);
 };
 
-

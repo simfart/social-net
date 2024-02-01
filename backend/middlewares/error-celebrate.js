@@ -45,6 +45,7 @@ const errPostId = celebrate({
     postId: Joi.objectId(),
   }),
 })
+
 module.exports = {
   errCreateUser,
   errLogin,

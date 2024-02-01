@@ -1,3 +1,7 @@
+export { useToggleLike } from "./useToggleLike";
+
+export { useDeletePost } from "./useDeletePost";
+
 export  { useTimeAgo } from "./useTimeAgo";
 
 export { useShotenElement } from "./useShotenElement";

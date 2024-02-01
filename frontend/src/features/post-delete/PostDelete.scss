@@ -1,0 +1,25 @@
+.dropdown {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+
+  &-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    overflow: auto;
+
+    button {
+      display: block;
+      padding: 5px;
+      margin: 0;
+    }
+  }
+  &:hover &-content {
+    display: block;
+    right: 24px;
+  }
+}

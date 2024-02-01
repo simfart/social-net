@@ -54,9 +54,30 @@ const deletePost = (req, res, next) => {
     .catch(next)
 }
 
+const likeDeletePost = (req, res, next, keyMethod) => {
+  Post.findByIdAndUpdate(req.params.postId, keyMethod, { new: true })
+    .orFail(new NotFoundError('Карточка с указанным _id не найдена'))
+    .then((post) => {
+      res.send(post)
+    })
+    .catch(next)
+}
+
+const likePost = (req, res, next) => {
+  const keyMethod = { $addToSet: { likes: req.user._id } }
+  likeDeletePost(req, res, next, keyMethod)
+}
+
+const dislikePost = (req, res, next) => {
+  const keyMethod = { $pull: { likes: req.user._id } }
+  likeDeletePost(req, res, next, keyMethod)
+}
+
 module.exports = {
   getUserPost,
   createPost,
   deletePost,
   getPosts,
+  likePost,
+  dislikePost,
 }

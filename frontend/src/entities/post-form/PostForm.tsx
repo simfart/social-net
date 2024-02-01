@@ -6,11 +6,10 @@ import { useTimeAgo } from 'shared/hooks'
 import { cn } from '@bem-react/classname'
 import { YoutubeFrame } from 'entities/youtube-frame'
 import { Post, User } from 'shared/types'
+import { useUser } from 'shared/hooks/useUser'
+import { PostDelete } from 'features/post-delete'
 
 import './PostForm.scss'
-import { useUser } from 'shared/hooks/useUser'
-import { useDeletePost } from 'shared/hooks/useDeletePost'
-import { Loader } from 'shared/ui/loader/Loader'
 
 interface IPostForm extends PropsWithChildren {
   owner: User
@@ -32,14 +31,6 @@ export const PostForm: FC<IPostForm> = ({
   const createdAt = useTimeAgo(post.createdAt)
   const { data: currentUser } = useUser()
 
-  const { mutate, isLoading } = useDeletePost()
-
-  const onDeleteClick = useCallback(() => {
-    mutate(post._id)
-  }, [mutate, post._id])
-
-  if (isLoading) return <Loader />
-
   return (
     post && (
       <div className={CnPostForm()}>
@@ -51,16 +42,7 @@ export const PostForm: FC<IPostForm> = ({
               <p>{createdAt}</p>
             </div>
           </div>
-          {owner._id === currentUser?._id && (
-            <div className="dropdown">
-              <img src={dotsIcon} alt="" />
-              <div className="dropdown-content">
-                <Button view="edit" onClick={onDeleteClick}>
-                  Delete
-                </Button>
-              </div>
-            </div>
-          )}
+          {owner._id === currentUser?._id && <PostDelete post={post} />}
         </div>
         <div className={CnPostForm('content')}>
           {post.description && (
