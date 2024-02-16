@@ -30,6 +30,7 @@ export const PostForm: FC<IPostForm> = ({
   const { isShorten } = useShotenElement({ ref })
   const createdAt = useTimeAgo(post.createdAt)
   const { data: currentUser } = useUser()
+  console.log(isShorten)
 
   return (
     post && (
