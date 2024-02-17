@@ -11,6 +11,8 @@ export const useShotenElement = ({ ref }: RefProps) => {
     const { offsetHeight, scrollHeight } = ref.current || {}
 
     if (offsetHeight && scrollHeight && offsetHeight < scrollHeight) {
+      console.log('offsetHeight', offsetHeight)
+      console.log('scrollHeight', scrollHeight)
       setIsShorten(true)
     } else {
       setIsShorten(false)

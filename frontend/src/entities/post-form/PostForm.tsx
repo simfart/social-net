@@ -48,7 +48,10 @@ export const PostForm: FC<IPostForm> = ({
         <div className={CnPostForm('content')}>
           {post.description && (
             <p ref={ref}>
-              <span>{post.description}</span>
+              <div>
+                {' '}
+                <span>{post.description}</span>
+              </div>
               {isShorten && (
                 <a href="#" tabIndex={-1}>
                   Show More
