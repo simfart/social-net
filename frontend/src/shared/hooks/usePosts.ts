@@ -1,4 +1,8 @@
-import { useQuery } from "react-query";
-import { getPosts } from "shared/api";
+import { useQuery } from 'react-query'
+import { getPosts } from 'shared/api'
 
-export const usePosts = () => useQuery('posts', getPosts)
+export const usePosts = () =>
+  useQuery({
+    queryKey: 'posts',
+    queryFn: getPosts,
+  })

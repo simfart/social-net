@@ -8,11 +8,10 @@ import { YoutubeFrame } from 'entities/youtube-frame'
 import { Post, User } from 'shared/types'
 import { useUser } from 'shared/hooks/useUser'
 import { PostDelete } from 'features/post-delete'
+import { PostToggleLike } from 'features/post-toggleLike'
+import { useNavigate } from 'react-router-dom'
 
 import './PostForm.scss'
-import { PostToggleLike } from 'features/post-toggleLike'
-import { PostView } from 'pages/post-view'
-import { useNavigate } from 'react-router-dom'
 
 interface IPostForm extends PropsWithChildren {
   owner: User

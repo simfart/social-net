@@ -20,7 +20,7 @@ export const RouterProvider: FC = () => {
       <Route path="/create-post" element={<CreatePost />} /> {/* sprotected */}
       <Route path="*" element={<PageNotFound />} />
       <Route path="/edit-profile" element={<UpdateUser />} />
-      {/* <Route path="/posts/:postId" element={<PostView />} /> */}
+      <Route path="/posts/:postId" element={<PostView />} />
     </Routes>
   )
 }
