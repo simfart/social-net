@@ -8,6 +8,7 @@ import { CreatePost } from 'pages/createPost'
 import { Profile } from 'pages/profile'
 import { UpdateUser } from 'pages/updateUser'
 import { Home } from 'pages/home'
+import { PostView } from 'pages/post-view'
 
 export const RouterProvider: FC = () => {
   return (
@@ -19,6 +20,7 @@ export const RouterProvider: FC = () => {
       <Route path="/create-post" element={<CreatePost />} /> {/* sprotected */}
       <Route path="*" element={<PageNotFound />} />
       <Route path="/edit-profile" element={<UpdateUser />} />
+      {/* <Route path="/posts/:postId" element={<PostView />} /> */}
     </Routes>
   )
 }

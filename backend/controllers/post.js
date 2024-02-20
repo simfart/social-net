@@ -73,6 +73,49 @@ const dislikePost = (req, res, next) => {
   likeDeletePost(req, res, next, keyMethod)
 }
 
+const createComment = (req, res, next) => {
+  const { description, image, video } = req.body
+  const owner = req.user._id
+
+  Post.create({ description, image, video, owner })
+    .then((post) => res.status(201).send(post))
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        console.log(err)
+        next(
+          new ValidationError(
+            'Переданы некорректные данные при добавлении фильма ',
+          ),
+        )
+      } else {
+        next(err)
+      }
+    })
+}
+
+const newComment = async (req, res) => {
+  // find out which post you are commenting
+  const id = req.params.postId
+  // get the comment text and record post id
+  const comment = new Comment({
+    text: req.body.comment,
+    post: id,
+  })
+  // save comment
+  await comment.save()
+  // get this particular post
+  const postRelated = await Post.findById(id)
+  // push the comment into the post.comments array
+  postRelated.comments.push(comment)
+  // save and redirect...
+  await postRelated.save(function (err) {
+    if (err) {
+      console.log(err)
+    }
+    res.redirect('/')
+  })
+}
+
 module.exports = {
   getUserPost,
   createPost,
@@ -80,4 +123,5 @@ module.exports = {
   getPosts,
   likePost,
   dislikePost,
+  newComment,
 }

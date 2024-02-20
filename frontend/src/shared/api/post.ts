@@ -16,3 +16,7 @@ export const deletePost = async (payload:string) => {
   return await api.delete(`/posts/${payload}`).then((res) => res.data);
 };
 
+export const createComment = async (payload:string) =>{
+  return await api.post(`/posts/${payload}`).then((res)=>res.data)
+}
+

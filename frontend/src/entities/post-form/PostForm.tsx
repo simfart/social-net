@@ -10,6 +10,9 @@ import { useUser } from 'shared/hooks/useUser'
 import { PostDelete } from 'features/post-delete'
 
 import './PostForm.scss'
+import { PostToggleLike } from 'features/post-toggleLike'
+import { PostView } from 'pages/post-view'
+import { useNavigate } from 'react-router-dom'
 
 interface IPostForm extends PropsWithChildren {
   owner: User
@@ -30,7 +33,12 @@ export const PostForm: FC<IPostForm> = ({
   const { isShorten } = useShotenElement({ ref })
   const createdAt = useTimeAgo(post.createdAt)
   const { data: currentUser } = useUser()
-  console.log(isShorten)
+
+  const navigate = useNavigate()
+
+  const onPostClick = () => {
+    navigate(`/posts/${post._id}`)
+  }
 
   return (
     post && (
@@ -45,13 +53,10 @@ export const PostForm: FC<IPostForm> = ({
           </div>
           {owner._id === currentUser?._id && <PostDelete post={post} />}
         </div>
-        <div className={CnPostForm('content')}>
+        <div className={CnPostForm('content')} onClick={onPostClick}>
           {post.description && (
             <p ref={ref}>
-              <div>
-                {' '}
-                <span>{post.description}</span>
-              </div>
+              <span>{post.description}</span>
               {isShorten && (
                 <a href="#" tabIndex={-1}>
                   Show More
@@ -63,10 +68,7 @@ export const PostForm: FC<IPostForm> = ({
           {post.video && <YoutubeFrame videoURL={post.video} />}
         </div>
         <div className={CnPostForm('actions')}>
-          <Button onClick={onLikeClick} view="post">
-            <img src={likeIcon} alt="Like Icon" />
-            <p>{post.likes.length}</p>
-          </Button>
+          <PostToggleLike post={post} />
           <Button onClick={onCommentClick} view="post">
             <img src={commentIconn} alt="Like Icon" />
             <p>{post.comments.length}</p>

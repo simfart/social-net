@@ -1,35 +1,20 @@
-const mongoose = require('mongoose');
-const validator = require('validator');
+const mongoose = require('mongoose')
+const validator = require('validator')
 
-const commentSchema = new mongoose.Schema(
-  {
-
-    //   commentID: {
-    //     type: Schema.Types.ObjectId,
-    //     default: () => new Types.ObjectId()
-    // },
-
-    commentnBody: {
-      type: String,
-      required: true,
-    },
-
-    userName: {
-      type: String,
-      required: true
-    },
-
-    createdAt: {
-      type: Date,
-      default: Date.now(),
-    }
-
+const commentSchema = new mongoose.Schema({
+  text: {
+    type: String,
+    trim: true,
+    required: true,
   },
-  {
-    versionKey: false,
+  date: {
+    type: Date,
+    default: Date.now,
   },
-);
+  post: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Post',
+  },
+})
 
-module.exports = mongoose.model('Comment', commentSchema);
-
-// module.exports.commentSchema = commentSchema;
+module.exports = mongoose.model('Comment', commentSchema)

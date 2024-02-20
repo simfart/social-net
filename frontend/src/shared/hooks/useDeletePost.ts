@@ -7,10 +7,9 @@ export const useDeletePost = () =>{
     const queryClient = useQueryClient()
 
     const {mutate, isLoading} = useMutation(deletePost, {
-        onSuccess: (data) =>{
+        onSuccess: () =>{
             queryClient.invalidateQueries(['userPosts'],)
-            queryClient.invalidateQueries(['posts'],)
-            console.log(data)
+            queryClient.invalidateQueries(['posts'],)        
         },
        onError:(err)=>{
         console.log(err)

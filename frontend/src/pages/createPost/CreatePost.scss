@@ -1,7 +1,5 @@
 .createPost {
   max-width: 800px;
-  // display: flex;
-  // grid-template-columns: auto 1fr;
   margin: 0 auto;
 
   h2 {
@@ -43,6 +41,10 @@
       border-radius: 100px;
     }
 
+    textarea {
+      display: inline-table;
+    }
+
     @media screen and (max-width: 600px) {
       img {
         width: 32px;
@@ -65,13 +67,9 @@
       }
     }
   }
-
 }
 @media screen and (max-width: 600px) {
   .createPost {
- 
-   
-
     button,
     h2 {
       font-size: 14px;

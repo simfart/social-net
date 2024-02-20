@@ -1,3 +1,5 @@
+export { useComment } from "./useComment";
+
 export { useToggleLike } from "./useToggleLike";
 
 export { useDeletePost } from "./useDeletePost";
